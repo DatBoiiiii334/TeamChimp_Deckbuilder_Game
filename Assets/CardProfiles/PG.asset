@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: PG
   m_EditorClassIdentifier: 
   ID: 3
-  grade: 
-  name: Psycho Goreman
+  amount: 0
+  Grade: Very Cool
+  Name: PG
   Description: '"No! I dont like hunky boys... or do I?"  -Psycho Goreman'
   Image: {fileID: 21300000, guid: 0706b7bbf8d0d8c488a9332ec04dad12, type: 3}
-  Mana: 2
-  AttackDamage: 5
-  Health: 6
+  Mana: 5
+  AttackDamage: 15
+  Health: 0
   statusEffect: 0
+  CardOfType: 0

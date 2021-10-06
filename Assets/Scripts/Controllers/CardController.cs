@@ -15,9 +15,6 @@ public class CardController : MonoBehaviour
         }
     }
 
-    public void Start(){
-        //SpawnCard();
-    }
     public void SpawnCard(){
         for(int i=0;i<AllCardProfiles.Count; i++){
             GameObject myCard;
