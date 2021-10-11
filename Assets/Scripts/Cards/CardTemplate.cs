@@ -8,11 +8,12 @@ public class CardTemplate : MonoBehaviour
 {
     public Card card;
 
-    public TextMeshProUGUI nameText, descriptionText,ManaValue ,AttackValue, HealValue;
+    public TextMeshProUGUI nameText, descriptionText, ManaValue, AttackValue, HealValue;
     //public card.cardType myCardType;
-     public Card.cardType _card;
+    public Card.cardType _card;
     public Image CharCardArt;
-    private void Start(){
+    private void Start()
+    {
         nameText.text = card.Name;
         CharCardArt.sprite = card.Image;
         descriptionText.text = card.Description;
@@ -21,11 +22,4 @@ public class CardTemplate : MonoBehaviour
         HealValue.text = card.Health.ToString();
         _card = card.CardOfType;
     }
-
-    public void DoDamage(int damage){
-
-
-    }
-
-
 }

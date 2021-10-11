@@ -16,13 +16,13 @@ Gameplay
     - Not allowed to get any cards
 
     Enemys are:
-    - for each enemy in list is doing random aktion
+    - for each enemy in list is doing random action
     - Enemys can heal each other
     - have 3 seconds each to do their aktion
 
 
     - Enemy AI statemachine
-    - Enemys have 3 aktions 1.basic attack 2. heal/give shield 3. Special attack
+    - Enemys have 3 actions 1.basic attack 2. heal/give shield 3. Special attack
     - Can be done at random
 
 * Tik effects like bleed, happen every end of Turn
@@ -31,9 +31,5 @@ Gameplay
 * Different enemie types
 * interactive map 
 * Interactive UI
-
-
-
-
 
 */

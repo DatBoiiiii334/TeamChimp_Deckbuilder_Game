@@ -14,14 +14,6 @@ public class OnHoverScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnSelect()
     {
-        // if(v >= 1) {
-        //     OnDeSelect();
-        // }
-        // else {
-        //     gameObject.transform.localScale = newSize;
-        //     selected = true;
-        //     v += 1;
-        // }
     }
 
     public void OnDeSelect()
@@ -33,14 +25,18 @@ public class OnHoverScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(eventData.pointerCurrentRaycast.gameObject != null) {
+        if (eventData.pointerCurrentRaycast.gameObject != null)
+        {
             gameObject.transform.localScale = newSize;
         }
+
+        //Que the hover over sound
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (selected == false) {
+        if (selected == false)
+        {
             gameObject.transform.localScale = oldSize;
         }
     }

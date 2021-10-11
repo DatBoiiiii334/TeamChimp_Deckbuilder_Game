@@ -9,57 +9,58 @@ public class GameManager : MonoBehaviour
     public bool PlayerTurn;
     private CardController _cardController;
     //private Player _player;
+    //private Player _player;
 
-    public void Start(){
+    public void Start()
+    {
         PlayerTurn = true;
         _cardController = GetComponent<CardController>();
         GiveHand();
-        //_player = GetComponent<Player>();
     }
 
-    public void Update()
+
+    public void EndPlayerTurn()
     {
-        //
-    }
-
-    public void EndPlayerTurn(){
         PlayerTurn = false;
         GiveHand();
     }
 
-    public void GiveHand(){
+    public void GiveHand()
+    {
         //Remove old Cards 
         RemoveCards();
 
         //Give Mana to Player
-        Player._instance.Mana = 5;
+        Player._player.Mana = 5;
 
         //Add 5 new random cards
-        for(int i = 0; i<5; i++ ){
-            //Debug.Log("hi "+ i + "x");
+        for (int i = 0; i < 5; i++)
+        {
             _cardController.BuyCard();
-        }   
+        }
     }
 
 
-    public void RemoveCards(){
-        //Put all children from hand in a List
+    public void RemoveCards()
+    {
         var children = new List<GameObject>();
-        foreach(Transform child in CardSpawn.transform) {
+        foreach (Transform child in CardSpawn.transform)
+        {
             children.Add(gameObject);
         }
-        if (children.Count >= 0) {
-            foreach (Transform child in CardSpawn.transform) {
+        if (children.Count >= 0)
+        {
+            foreach (Transform child in CardSpawn.transform)
+            {
                 Destroy(child.gameObject);
             }
         }
-
-
-        // kill each item in list
     }
 
-    private void Awake(){
-        if(_instance != null){
+    private void Awake()
+    {
+        if (_instance != null)
+        {
             Destroy(gameObject);
         }
         _instance = this;

@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: PG
   m_EditorClassIdentifier: 
   ID: 3
-  amount: 0
-  Grade: Very Cool
-  Name: PG
-  Description: '"No! I dont like hunky boys... or do I?"  -Psycho Goreman'
+  _name: Psycho Goreman
+  _description: Summon this powerfull demon to kick your opponents ass
   Image: {fileID: 21300000, guid: 0706b7bbf8d0d8c488a9332ec04dad12, type: 3}
-  Mana: 5
-  AttackDamage: 15
-  Health: 0
-  statusEffect: 0
-  CardOfType: 0
+  _mana: 4
+  _attackDamage: 15
+  _health: 0
+  _cardOfType: 0

@@ -14,9 +14,10 @@ public class CardCreatorTool : EditorWindow
 
     void OnGUI()
     {
-        GUILayout.Label("hello world",EditorStyles.boldLabel);
+        GUILayout.Label("hello world", EditorStyles.boldLabel);
 
-        if (GUILayout.Button("Create Card")) {
+        if (GUILayout.Button("Create Card"))
+        {
             //Do the thing
             Create();
         }
@@ -29,11 +30,11 @@ public class CardCreatorTool : EditorWindow
         //Card myCard;
         //myCard = Resources.Load<Card>("CardProfiles") as Card;
         //Card myCard = Resources.Load("cards") as Card;
-        myCard.name = "Erik";
-        myCard.Description = "Hello Cruel World";
-        myCard.Mana = 7;
-        myCard.AttackDamage = 10;
-        myCard.Health = 100;
+        //myCard.name = "Erik";
+        //myCard.Description = "Hello Cruel World";
+        //myCard.Mana = 7;
+        //myCard.AttackDamage = 10;
+        //myCard.Health = 100;
     }
 
 }

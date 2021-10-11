@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: FireBall
   m_EditorClassIdentifier: 
   ID: 0
-  amount: 1
-  Grade: Pretty cool
-  Name: FireBall
-  Description: You cast a magic fireball
+  _name: Fireball
+  _description: Fires a cool fireball
   Image: {fileID: 21300000, guid: d6c6374f19c250942977d9ca5af16fe3, type: 3}
-  Mana: 3
-  AttackDamage: 5
-  Health: 0
-  statusEffect: 0
-  CardOfType: 0
+  _mana: 2
+  _attackDamage: 5
+  _health: 0
+  _cardOfType: 0
