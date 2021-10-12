@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2a72e772-6002-4178-952f-246dc0a222d2}">
+		<property name="assetPath">
+			<value>S_PaperBirds_Normalized-008.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.0299999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dbfc758a-f35e-41e6-86ab-222446aefc37}</destination>
+		</relationship>
+	</object>
+</objects>
