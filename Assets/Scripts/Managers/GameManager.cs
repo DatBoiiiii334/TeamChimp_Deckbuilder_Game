@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public void GiveHand()
     {
         //Remove old Cards 
-        RemoveCards();
+        RemoveCards(CardSpawn.transform);
 
         //Give Mana to Player
         Player._player.Mana = 5;
@@ -41,16 +41,16 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void RemoveCards()
+    public void RemoveCards(Transform cardSpawn)
     {
         var children = new List<GameObject>();
-        foreach (Transform child in CardSpawn.transform)
+        foreach (Transform child in cardSpawn)
         {
             children.Add(gameObject);
         }
         if (children.Count >= 0)
         {
-            foreach (Transform child in CardSpawn.transform)
+            foreach (Transform child in cardSpawn)
             {
                 Destroy(child.gameObject);
             }

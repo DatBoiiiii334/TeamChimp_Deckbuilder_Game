@@ -16,7 +16,7 @@ public class CardPicker : MonoBehaviour
         }
         instance_CardPicker = this;
     }
-    
+
 
     public void OpenNewCardsWindow()
     {

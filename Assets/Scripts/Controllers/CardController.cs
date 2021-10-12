@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class CardController : MonoBehaviour
 {
-    public static CardController instance;
+    public static CardController instance_CardController;
     public GameObject CardPrefab, CardSpawnPoint;
     public List<Card> AllCardProfiles;
     private void Awake()
     {
-        if (instance != null)
+        if (instance_CardController != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+           instance_CardController = this;
         }
     }
 
