@@ -24,10 +24,12 @@ public class DisplayCard : MonoBehaviour
         HealValue.text = card.Health.ToString();
     }
 
-    public void SelectProfile(){
+    public void SelectProfile()
+    {
         print(card.Name + " Was selected");
         CardController.instance_CardController.AllCardProfiles.Add(card);
         CardPicker.instance_CardPicker.AllNewCardProfiles.Remove(card);
+        CardPicker.instance_CardPicker.CloseNewCardsWindow();
         Destroy(gameObject);
     }
 }

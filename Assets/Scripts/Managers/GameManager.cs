@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    public GameObject CardSpawn;
+    public GameObject CardSpawn, winScreen, LoseScreen;
     public bool PlayerTurn;
     private CardController _cardController;
     //private Player _player;
@@ -21,8 +21,16 @@ public class GameManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        PlayerTurn = false;
-        GiveHand();
+        if (Enemy._instance.Health <= 0)
+        {
+            winScreen.SetActive(true);
+            CardPicker.instance_CardPicker.OpenNewCardsWindow();
+        }
+        else
+        {
+            PlayerTurn = false;
+            GiveHand();
+        }
     }
 
     public void GiveHand()

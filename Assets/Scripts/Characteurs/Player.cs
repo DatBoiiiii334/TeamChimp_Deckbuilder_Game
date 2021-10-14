@@ -9,26 +9,8 @@ public class Player : Humanoid
     public static Player _player;
     public int Mana;
     public TextMeshProUGUI ManaField;
-
+    public Slider hpSlider, shieldSlider;
     public Animator anim;
-
-    public void Start(){
-        anim = this.gameObject.GetComponent<Animator>();
-        anim.Play("DEV_Idle");
-    }
-
-    public void Update()
-    {
-        //  if (anim.isPlaying)
-        // {
-        //     return;
-        // }
-
-        NameField.text = Name;
-        HealthField.text = Health.ToString();
-        ShieldField.text = Shield.ToString();
-        ManaField.text = Mana.ToString();
-    }
 
     private void Awake()
     {
@@ -37,6 +19,23 @@ public class Player : Humanoid
             Destroy(gameObject);
         }
         _player = this;
+        anim = gameObject.GetComponent<Animator>();
+    }
 
+    public void Start()
+    {
+        anim.Play("DEV_Idle");
+        hpSlider.maxValue = maxHealth;
+        shieldSlider.maxValue = maxShield;
+    }
+
+    public void Update()
+    {
+        NameField.text = Name;
+        HealthField.text = Health.ToString();
+        ShieldField.text = Shield.ToString();
+        ManaField.text = Mana.ToString();
+        hpSlider.value = Health;
+        shieldSlider.value = Shield;
     }
 }

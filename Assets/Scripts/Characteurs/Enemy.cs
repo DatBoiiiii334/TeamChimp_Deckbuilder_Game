@@ -10,6 +10,7 @@ public class Enemy : Humanoid
     public static Enemy _instance;
     public int basicDamage, SpecialDamage, HealAmount, ShieldAmount;
     public TextMeshProUGUI NextEnemyAttack;
+    public Slider EnemyHpSlider, EnemyShieldSlider;
     private Animator enemyAnimator;
 
     private int myNextAttack;
@@ -25,9 +26,12 @@ public class Enemy : Humanoid
         EnemyTurn();
     }
 
-    public void Start(){
+    public void Start()
+    {
         //EnemyTurn();
         enemyAnimator = GetComponent<Animator>();
+        EnemyHpSlider.maxValue = maxHealth;
+        EnemyShieldSlider.maxValue = maxHealth;
     }
 
     public void Update()
@@ -39,6 +43,8 @@ public class Enemy : Humanoid
         NameField.text = Name;
         HealthField.text = Health.ToString();
         ShieldField.text = Shield.ToString();
+        EnemyHpSlider.value = Health;
+        EnemyShieldSlider.value = Shield;
         //NextEnemyAttack.text = 
     }
 
@@ -72,43 +78,49 @@ public class Enemy : Humanoid
         }
     }
 
-    public void ShowNextAttack(string nameAttack){
+    public void ShowNextAttack(string nameAttack)
+    {
         NextEnemyAttack.text = nameAttack;
     }
 
-    public void EnemyAttackTurn(){
+    public void EnemyAttackTurn()
+    {
         GameManager._instance.PlayerTurn = true;
-        
 
-        switch(myNextAttack){
+
+        switch (myNextAttack)
+        {
             case 0:
-            ComidAttack(basicDamage, "Basic Attack");
-            EnemyTurn();
-            break;
+                ComidAttack(basicDamage, "Basic Attack");
+                EnemyTurn();
+                break;
 
             case 1:
-            StartCoroutine(EnemyDoAttack("Heal"));
-            Enemy._instance.Health += HealAmount;
-            //Debug.Log(gameObject.name + " Has healt himself");
-            EnemyTurn();
-            break;
+                ComidRegen(HealAmount, 0);
+                EnemyTurn();
+                break;
 
             case 2:
-            ComidAttack(SpecialDamage, "Special Attack");
-            EnemyTurn();
-            break;
+                ComidAttack(SpecialDamage, "Special Attack");
+                EnemyTurn();
+                break;
 
             case 3:
-            StartCoroutine(EnemyDoAttack("Heal"));
-            Enemy._instance.Shield += ShieldAmount;
-            //Debug.Log(gameObject.name + " Has shield himself");
-            EnemyTurn();
-            break;
+                ComidRegen(0, ShieldAmount);
+                EnemyTurn();
+                break;
 
             default:
-            Debug.Log("Something went wrong");
-            break;
+                Debug.Log("Something went wrong");
+                break;
         }
+    }
+
+    public void ComidRegen(int heal, int shield)
+    {
+        StartCoroutine(EnemyDoAttack("Heal"));
+        Enemy._instance.Shield += shield;
+        Enemy._instance.Health += heal;
     }
 
     public void ComidAttack(int damage, string call)
@@ -118,7 +130,6 @@ public class Enemy : Humanoid
             //PLAY COMBAT ANIMATION
             StartCoroutine(EnemyDoAttack("BasicAttack"));
             Player._player.Shield -= damage;
-            //Debug.Log(gameObject.name + " did a " + call + " It was absorbed by shield.");
         }
         else if (Player._player.Shield < damage)
         {
@@ -127,11 +138,16 @@ public class Enemy : Humanoid
             StartCoroutine(EnemyDoAttack("BasicAttack"));
             var = damage -= Player._player.Shield;
             Player._player.Health -= var;
-            //Debug.Log(gameObject.name + " did a " + call + " that broke through the players shield");
+            Player._player.Shield = 0;
+            if (Player._player.Health <= 0)
+            {
+                GameManager._instance.LoseScreen.SetActive(true);
+            }
         }
     }
 
-    IEnumerator EnemyDoAttack(string whatDo){
+    IEnumerator EnemyDoAttack(string whatDo)
+    {
         enemyAnimator.SetBool(whatDo, true);
         yield return new WaitForSeconds(0.1f);
         enemyAnimator.SetBool(whatDo, false);

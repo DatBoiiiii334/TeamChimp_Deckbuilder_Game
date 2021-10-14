@@ -70,8 +70,6 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                             Player._player.Mana -= kaart.card.Mana;
                             //Stop attack anim
                             Destroy(kaart.gameObject);
-                            
-
                         }
                         else if (kaart.card.AttackDamage <= Enemy._instance.Shield)
                         {
@@ -84,6 +82,7 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
                     case 1: // HEAL
                         Player._player.Health += kaart.card.Health;
+                        Player._player.Shield += kaart.card.Shield;
                         Player._player.Mana -= kaart.card.Mana;
                         StartCoroutine(StartCombat("DoHealAnim"));
                         Destroy(kaart.gameObject);
@@ -95,9 +94,10 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             }
         }
     }
-    
 
-    public IEnumerator StartCombat(string whatToDo){
+
+    public IEnumerator StartCombat(string whatToDo)
+    {
         Player._player.anim.SetBool(whatToDo, true);
         yield return new WaitForSeconds(0.1f);
         Player._player.anim.SetBool(whatToDo, false);
