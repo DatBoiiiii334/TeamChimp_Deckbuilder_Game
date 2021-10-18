@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: SpookyCat
   m_EditorClassIdentifier: 
   ID: 0
-  _name: SpookyCat
+  _name: CindyNekko
   _description: Through the raw power of feline magic, you curse your enemys with
     this powerfully cute cat
-  Image: {fileID: 21300000, guid: eac37ee5561733146a68b26b9f9f3a65, type: 3}
+  Image: {fileID: 21300000, guid: 711946258cd01094eb766a90d30efc3c, type: 3}
   _mana: 3
   _attackDamage: 15
   _health: 0
+  _shield: 0
   _cardOfType: 0
