@@ -5,8 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "newCard", menuName = "CreateNewCard", order = 1)]
-[Serializable]
+[CreateAssetMenu(fileName = "new Card", menuName = "Create New Card", order = 1)]
 public class Card : ScriptableObject
 {
     [SerializeField]
