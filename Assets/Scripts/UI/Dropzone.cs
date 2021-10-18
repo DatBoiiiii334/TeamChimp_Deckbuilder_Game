@@ -58,24 +58,24 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 switch (type)
                 {
                     case 0: //DAMAGE
-                        if (kaart.card.AttackDamage > Enemy._instance.Shield)
+                        if (kaart.card.AttackDamage > EnemyBody._instanceEnemyBody.Shield)
                         {
                             int var;
                             int kaartDamage = kaart.card.AttackDamage;
                             StartCoroutine(StartCombat("DoAttackAnim"));
                             //Do attack anim
-                            var = kaartDamage -= Enemy._instance.Shield;
-                            Enemy._instance.Shield = 0;
-                            Enemy._instance.Health -= var;
+                            var = kaartDamage -= EnemyBody._instanceEnemyBody.Shield;
+                            EnemyBody._instanceEnemyBody.Shield = 0;
+                            EnemyBody._instanceEnemyBody.Health -= var;
                             Player._player.Mana -= kaart.card.Mana;
                             //Stop attack anim
                             Destroy(kaart.gameObject);
                         }
-                        else if (kaart.card.AttackDamage <= Enemy._instance.Shield)
+                        else if (kaart.card.AttackDamage <= EnemyBody._instanceEnemyBody.Shield)
                         {
                             Destroy(kaart.gameObject);
                             StartCoroutine(StartCombat("DoAttackAnim"));
-                            Enemy._instance.Shield -= kaart.card.AttackDamage;
+                            EnemyBody._instanceEnemyBody.Shield -= kaart.card.AttackDamage;
                             Player._player.Mana -= kaart.card.Mana;
                         }
                         break;

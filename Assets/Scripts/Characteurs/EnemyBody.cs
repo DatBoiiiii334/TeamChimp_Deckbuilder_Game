@@ -6,11 +6,12 @@ using TMPro;
 
 public class EnemyBody : MonoBehaviour
 {
+    public static EnemyBody _instanceEnemyBody;
     public EnemyCore _core;
     public TextMeshProUGUI nameField, shieldField, NextEnemyAttack;
     public Slider hpSlider;
     public Animator myAnimator;
-    private int health, shield;
+    public int Health, Shield;
 
     //public static Enemy _instance;
     /* Refernces will happen by looking at either the enemy TAG or CLASS */
@@ -20,20 +21,33 @@ public class EnemyBody : MonoBehaviour
     //public Slider EnemyHpSlider, EnemyShieldSlider;
     //private Animator enemyAnimator;
 
+    private void Awake()
+    {
+        if (_instanceEnemyBody != null)
+        {
+            Destroy(gameObject);
+        }
+        _instanceEnemyBody = this;
+
+        EnemyTurn();
+    }
+
     private int myNextAttack;
 
-    public void Start(){
+    public void Start()
+    {
         nameField.text = _core.Name;
-        health = _core.maxHealth;
-        shield = _core.maxShield;
+        Health = _core.maxHealth;
+        Shield = _core.maxShield;
         //myAnimator = _core.animController;
         myAnimator = GetComponent<Animator>();
         hpSlider.maxValue = _core.maxHealth;
     }
 
-    public void Update(){
-        hpSlider.value = health;
-        shieldField.text = shield.ToString();
+    public void Update()
+    {
+        hpSlider.value = Health;
+        shieldField.text = Shield.ToString();
 
         if (GameManager._instance.PlayerTurn == false)
         {
@@ -111,8 +125,8 @@ public class EnemyBody : MonoBehaviour
     public void ComidRegen(int heal, int shield)
     {
         StartCoroutine(EnemyDoAttack("Heal"));
-        Enemy._instance.Shield += shield;
-        Enemy._instance.Health += heal;
+        EnemyBody._instanceEnemyBody.Shield += shield;
+        EnemyBody._instanceEnemyBody.Health += heal;
     }
 
     public void ComidAttack(int damage, string call)

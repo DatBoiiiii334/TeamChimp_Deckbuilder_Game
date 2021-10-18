@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        if (Enemy._instance.Health <= 0)
+        if (EnemyBody._instanceEnemyBody.Health <= 0)
         {
             winScreen.SetActive(true);
             CardPicker.instance_CardPicker.OpenNewCardsWindow();
