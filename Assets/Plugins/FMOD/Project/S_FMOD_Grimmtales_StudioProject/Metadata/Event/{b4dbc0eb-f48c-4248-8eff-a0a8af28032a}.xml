@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{b4dbc0eb-f48c-4248-8eff-a0a8af28032a}">
 		<property name="name">
-			<value>Is Dit Goed Geimporteerd</value>
+			<value>Dit is echt wel goed geimporteerd</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>
