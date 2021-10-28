@@ -15,11 +15,11 @@ C:/Users/Cindy/Documents/SchoolBackup/Unity/TeamChimp_Deckbuilder_Game
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-53356
+54223
 Successfully changed project path to: C:/Users/Cindy/Documents/SchoolBackup/Unity/TeamChimp_Deckbuilder_Game
 C:/Users/Cindy/Documents/SchoolBackup/Unity/TeamChimp_Deckbuilder_Game
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 156.36 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 103.51 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.1.0b5 (37f46e59aab7)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.1.0b5/Editor/Data/Resources/UnitySubsystems
@@ -36,84 +36,95 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.1.0b5/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.1.0b5/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.1.0b5/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56068
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56420
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.1.0b5/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003419 seconds.
+Registered in 0.001381 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 152.12 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 89.02 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.577 seconds
+- Completed reload, in  1.006 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.007306 seconds.
+Registered in 0.002620 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 141.64 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 98.10 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.595 seconds
+- Completed reload, in  0.979 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 1.05 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 0.86 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3975 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 288.3 MB.
 System memory in use after: 288.5 MB.
 
 Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 4428.
-Total: 3.814000 ms (FindLiveObjects: 0.563000 ms CreateObjectMapping: 0.404700 ms MarkObjects: 2.756100 ms  DeleteObjects: 0.088500 ms)
+Total: 2.943900 ms (FindLiveObjects: 0.952400 ms CreateObjectMapping: 0.238600 ms MarkObjects: 1.698600 ms  DeleteObjects: 0.053300 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Assets/UI/Placeholder/Kaart_Placeholder.png
-  artifactKey: Guid(8785a65d6bf483a44a00443bc0baf302) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Assets/UI/Placeholder/Kaart_Placeholder.png using Guid(8785a65d6bf483a44a00443bc0baf302) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ca57bc8df67e4a46ee7b22dc464bb14') in 0.264633 seconds 
+  path: Assets/Assets/UI/Placeholder/Kaart_Placeholder2.png
+  artifactKey: Guid(cbcfc93cf9137024a844ae55e3a23fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Placeholder/Kaart_Placeholder2.png using Guid(cbcfc93cf9137024a844ae55e3a23fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68a2750848550eba59d570674fcc4aff') in 0.091542 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003865 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.83 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.473 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.82 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3897 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 298.2 MB.
-System memory in use after: 298.4 MB.
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 4451.
-Total: 4.716200 ms (FindLiveObjects: 0.451900 ms CreateObjectMapping: 0.420600 ms MarkObjects: 3.815900 ms  DeleteObjects: 0.026000 ms)
-
+Received Import Request.
+  Time since last request: 0.011137 seconds.
+  path: Assets/Assets/UI/Placeholder/Kaart_PlaceholderMask.png
+  artifactKey: Guid(1fcb42f2d7e7e8b45a05f04e60cd45bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Placeholder/Kaart_PlaceholderMask.png using Guid(1fcb42f2d7e7e8b45a05f04e60cd45bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c89e5e83a7ef36c21f62a73fa5eb86c') in 0.009748 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003983 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 2.30 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.462 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 0.84 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3896 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 298.2 MB.
-System memory in use after: 298.5 MB.
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 4453.
-Total: 4.658500 ms (FindLiveObjects: 0.441800 ms CreateObjectMapping: 0.355200 ms MarkObjects: 3.826300 ms  DeleteObjects: 0.033100 ms)
-
-AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+Received Import Request.
+  Time since last request: 17.952753 seconds.
+  path: Assets/Assets/UI/Placeholder/Kaart_Placeholder2.png
+  artifactKey: Guid(cbcfc93cf9137024a844ae55e3a23fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Placeholder/Kaart_Placeholder2.png using Guid(cbcfc93cf9137024a844ae55e3a23fe0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0318c5b834259d12c64aa69bc888a2c') in 0.057920 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.881044 seconds.
+  path: Assets/Assets/UI/Placeholder/Kaart_PlaceholderMask.png
+  artifactKey: Guid(1fcb42f2d7e7e8b45a05f04e60cd45bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Placeholder/Kaart_PlaceholderMask.png using Guid(1fcb42f2d7e7e8b45a05f04e60cd45bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a16fbd0d7385cf0b5b166b0eb498b1ac') in 0.023169 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 52.947284 seconds.
+  path: Assets/Assets/UI/Placeholder/mjcefovf.bmp
+  artifactKey: Guid(5e51ab4b933234f439ad4d3a906a818a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Placeholder/mjcefovf.bmp using Guid(5e51ab4b933234f439ad4d3a906a818a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac7c0b04008e92412a6b7760be1280ee') in 0.009925 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.792719 seconds.
+  path: Assets/Assets/UI/Placeholder/mjcefovf.bmp
+  artifactKey: Guid(5e51ab4b933234f439ad4d3a906a818a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Placeholder/mjcefovf.bmp using Guid(5e51ab4b933234f439ad4d3a906a818a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22dceaeb20c06e05ea65de7537b368b7') in 0.014305 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 117.666037 seconds.
+  path: Assets/Assets/UI/Fonts/Augusta.ttf
+  artifactKey: Guid(a8972ac3883198d4db0fa0eed7fd5118) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Fonts/Augusta.ttf using Guid(a8972ac3883198d4db0fa0eed7fd5118) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e437d6e2b278e2e86deed33683a046d3') in 0.139463 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 39.816762 seconds.
+  path: Assets/Assets/UI/Fonts/Augusta SDF.asset
+  artifactKey: Guid(c02349ca7cd040a4e9729963012d2bc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Fonts/Augusta SDF.asset using Guid(c02349ca7cd040a4e9729963012d2bc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60fb20673a23b4861f31df9d371d6154') in 0.033075 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.005340 seconds.
+  path: Assets/Assets/UI/Fonts/squealer SDF.asset
+  artifactKey: Guid(73a6285f8b090bb44ad83edb3a848a95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Fonts/squealer SDF.asset using Guid(73a6285f8b090bb44ad83edb3a848a95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e92ea2f6fa2050707ea16b6e529690c4') in 0.026680 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 201.580818 seconds.
+  path: Assets/Assets/UI/Prefab/Kaart.prefab
+  artifactKey: Guid(6a696e9b68e3f884fb2bc468eab05c04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Assets/UI/Prefab/Kaart.prefab using Guid(6a696e9b68e3f884fb2bc468eab05c04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c58998908543c8cc11e5689133a239e2') in 0.041699 seconds 
