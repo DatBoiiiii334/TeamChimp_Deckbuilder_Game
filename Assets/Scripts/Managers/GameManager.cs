@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public GameObject CardSpawn, winScreen, LoseScreen;
     public bool PlayerTurn;
     private CardController _cardController;
-    //private Player _player;
-    //private Player _player;
 
     public void Start()
     {

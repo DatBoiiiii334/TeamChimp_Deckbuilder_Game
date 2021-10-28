@@ -9,6 +9,7 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public bool HasMana = true;
     public Component[] kaarten;
     public Transform playerCardDeck;
+    public bool playerField;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -22,10 +23,12 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log(eventData.pointerDrag.name + "was dropped on " + gameObject.name);
-
+        //Debug.Log(eventData.pointerDrag.name + "was dropped on " + gameObject.name);
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-        //Card d = GetComponent<Card>();
+
+        //if (d != null) { return; }
+        //if (d._CardType != _CardType) { return; }
+        //if (d.TempMana > Player._player.Mana) { return; }
 
         if (d != null)
         {
@@ -37,8 +40,9 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 }
             }
         }
-    }
 
+        //d.parentToReturnTo = this.transform;
+    }
 
     public void Update()
     {
@@ -46,6 +50,7 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
         foreach (CardTemplate kaart in kaarten)
         {
+            //if (!Player.HasEnoughManaForCard(kaart.card.Mana)) { continue; }
             if (Player._player.Mana < kaart.card.Mana)
             {
                 HasMana = false;
@@ -58,6 +63,7 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 switch (type)
                 {
                     case 0: //DAMAGE
+                        print("DAMAGE");
                         if (kaart.card.AttackDamage > EnemyBody._instanceEnemyBody.Shield)
                         {
                             int var;
@@ -68,6 +74,7 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                             EnemyBody._instanceEnemyBody.Shield = 0;
                             EnemyBody._instanceEnemyBody.Health -= var;
                             Player._player.Mana -= kaart.card.Mana;
+                            EnemyBody._instanceEnemyBody.lastDamageDealtTo = kaart.card.AttackDamage;
                             //Stop attack anim
                             Destroy(kaart.gameObject);
                         }
@@ -77,15 +84,36 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                             StartCoroutine(StartCombat("DoAttackAnim"));
                             EnemyBody._instanceEnemyBody.Shield -= kaart.card.AttackDamage;
                             Player._player.Mana -= kaart.card.Mana;
+                            EnemyBody._instanceEnemyBody.lastDamageDealtTo = kaart.card.AttackDamage;
                         }
                         break;
 
                     case 1: // HEAL
+                        print("HEAL");
                         Player._player.Health += kaart.card.Health;
                         Player._player.Shield += kaart.card.Shield;
                         Player._player.Mana -= kaart.card.Mana;
                         StartCoroutine(StartCombat("DoHealAnim"));
                         Destroy(kaart.gameObject);
+                        break;
+
+                    case 2: //VAMPIRIC
+                        print("VAMPIRIC");
+                        if (EnemyBody._instanceEnemyBody.Shield <= 0)
+                        {
+                            EnemyBody._instanceEnemyBody.Health -= kaart.card.AttackDamage;
+                            Player._player.Health += EnemyBody._instanceEnemyBody.lastDamageDealtTo;
+                            EnemyBody._instanceEnemyBody.lastDamageDealtTo = 0;
+                            Player._player.Mana -= kaart.card.Mana;
+                            StartCoroutine(StartCombat("DoHealAnim"));
+                            Destroy(kaart.gameObject);
+                        }
+                        else
+                        {
+                            Player._player.Mana -= kaart.card.Mana;
+                            StartCoroutine(StartCombat("DoHealAnim"));
+                            Destroy(kaart.gameObject);
+                        }
                         break;
 
                     default: // Card has no grade

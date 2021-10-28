@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Guy
   m_EditorClassIdentifier: 
   _name: Guy Mc Dick
-  _maxHealth: 800
+  _maxHealth: 20
   _maxShield: 69
   _basicAttack: 5
   _specialAttack: 0
   _maxBuff: 0
+  enemyGameObject: {fileID: 6043411528525553501, guid: 9fef6112bd001a7448d0440e4f7ae081, type: 3}

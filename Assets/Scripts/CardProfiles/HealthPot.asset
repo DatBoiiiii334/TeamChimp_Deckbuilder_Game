@@ -19,4 +19,6 @@ MonoBehaviour:
   _mana: 2
   _attackDamage: 0
   _health: 10
+  _shield: 0
   _cardOfType: 1
+  _applyToPlayer: 1

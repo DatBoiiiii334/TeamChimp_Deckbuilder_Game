@@ -73,7 +73,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
+  cardDeckTransform: {fileID: 0}
   _CardType: 0
+  TempMana: 0
 --- !u!225 &6892161756016297711
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -106,6 +108,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6263968922235256757}
     m_Modifications:
+    - target: {fileID: 314429476177472893, guid: cc824dfd701ea92428964bd3c5985e44, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 314429476590430036, guid: cc824dfd701ea92428964bd3c5985e44, type: 3}
       propertyPath: m_Name
       value: Card
@@ -193,6 +199,18 @@ PrefabInstance:
     - target: {fileID: 314429476590430043, guid: cc824dfd701ea92428964bd3c5985e44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734924740751084463, guid: cc824dfd701ea92428964bd3c5985e44, type: 3}
+      propertyPath: m_Color.b
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734924740751084463, guid: cc824dfd701ea92428964bd3c5985e44, type: 3}
+      propertyPath: m_Color.g
+      value: 0.53333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734924740751084463, guid: cc824dfd701ea92428964bd3c5985e44, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6784314
       objectReference: {fileID: 0}
     - target: {fileID: 5906201157834371473, guid: cc824dfd701ea92428964bd3c5985e44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

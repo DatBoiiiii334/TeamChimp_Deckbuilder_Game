@@ -8,10 +8,11 @@ public class EnemyBody : MonoBehaviour
 {
     public static EnemyBody _instanceEnemyBody;
     public EnemyCore _core;
-    public TextMeshProUGUI nameField, shieldField, NextEnemyAttack;
+    public TextMeshProUGUI nameField, shieldField, NextEnemyAttack, lastDamageDealtToField;
     public Slider hpSlider;
     public Animator myAnimator;
     public int Health, Shield;
+    public int lastDamageDealtTo;
 
     //public static Enemy _instance;
     /* Refernces will happen by looking at either the enemy TAG or CLASS */
@@ -30,6 +31,8 @@ public class EnemyBody : MonoBehaviour
         _instanceEnemyBody = this;
 
         EnemyTurn();
+        GameObject enemyArt;
+        enemyArt = Instantiate(_core.enemyGameObject, transform.position, Quaternion.identity, gameObject.transform);
     }
 
     private int myNextAttack;
@@ -46,6 +49,7 @@ public class EnemyBody : MonoBehaviour
 
     public void Update()
     {
+        lastDamageDealtToField.text = lastDamageDealtTo.ToString();
         hpSlider.value = Health;
         shieldField.text = Shield.ToString();
 

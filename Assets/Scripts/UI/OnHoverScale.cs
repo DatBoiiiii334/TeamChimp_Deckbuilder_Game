@@ -8,6 +8,10 @@ public class OnHoverScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     private Vector3 newSize = new Vector3(1.5f, 1.5f, 0f);
     private Vector3 oldSize = new Vector3(1f, 1f, 0f);
+
+    //FOR WHEN INCREAING HIGHT AND WIDTH
+    //private Vector3 newSize = new Vector2(420f, 560f);
+    //private Vector3 oldSize = new Vector2(300f, 400f);
     private bool selected;
     public int v = 0;
 
@@ -28,6 +32,8 @@ public class OnHoverScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (eventData.pointerCurrentRaycast.gameObject != null)
         {
             gameObject.transform.localScale = newSize;
+            gameObject.GetComponent<RectTransform>().sizeDelta = newSize;
+            //GetComponent<RectTransform>().transform.rotation = Quaternion.Euler(0f,0f,0f); 
         }
 
         //Que the hover over sound
@@ -38,6 +44,8 @@ public class OnHoverScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (selected == false)
         {
             gameObject.transform.localScale = oldSize;
+            gameObject.GetComponent<RectTransform>().sizeDelta = oldSize;
+            //GetComponent<RectTransform>().transform.rotation = Quaternion.Euler(0f,0f,5f); 
         }
     }
 }

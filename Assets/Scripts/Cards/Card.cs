@@ -18,8 +18,10 @@ public class Card : ScriptableObject
     private int _mana, _attackDamage, _health, _shield;
     [SerializeField]
     private cardType _cardOfType;
+    [SerializeField]
+    private bool _applyToPlayer;
 
-    public enum cardType { DAMAGE, HEALING }
+    public enum cardType { DAMAGE, HEALING, VAMPIRIC }
     public string Name { get { return _name; } }
     public string Description { get { return _description; } }
     public int Mana { get { return _mana; } }
@@ -27,4 +29,5 @@ public class Card : ScriptableObject
     public int Health { get { return _health; } }
     public int Shield { get { return _shield; } }
     public cardType CardOfType { get { return _cardOfType; } }
+    public bool ApplyToPlayer { get { return _applyToPlayer; } }
 }

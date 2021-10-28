@@ -11,6 +11,7 @@ public class EnemyCore : ScriptableObject
     private string _name;
     [SerializeField]
     private int _maxHealth, _maxShield, _basicAttack, _specialAttack, _maxBuff;
+    public GameObject enemyGameObject;
 
     //public Animator animController;
     public string Name { get { return _name; } }

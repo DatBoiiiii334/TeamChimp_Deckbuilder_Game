@@ -21,3 +21,4 @@ MonoBehaviour:
   _health: 0
   _shield: 5
   _cardOfType: 1
+  _applyToPlayer: 1

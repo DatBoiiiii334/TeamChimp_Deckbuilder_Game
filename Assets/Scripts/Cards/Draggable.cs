@@ -9,6 +9,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     // public enum cardType {DAMAGE, MAGIC, ARMOR, BLEED}
     //public cardType CardOfType = cardType.DAMAGE;
     public Card.cardType _CardType;
+    public bool applyToPlayer;
     private CardTemplate myCardTemplate;
     public int TempMana;
     //public Card _card;
@@ -19,6 +20,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         myCardTemplate = GetComponent<CardTemplate>();
         _CardType = myCardTemplate._card;
         cardDeckTransform = this.transform.parent;
+        applyToPlayer = myCardTemplate.card.ApplyToPlayer;
     }
 
     public void Update()
