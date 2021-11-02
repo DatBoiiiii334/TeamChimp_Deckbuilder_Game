@@ -15,26 +15,35 @@ public class XXXXXX : MonoBehaviour
             Destroy(gameObject);
         }
         _instanceXXX = this;
-
     }
 
-    public void Update()
-    {
-
+    private void Start() {
         CheckKids();
-        //mouseArt.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
+    }
+
+    void OnEnable()
+    {
+        EventManager.OnCardAction += CheckKids;
+    }
+
+    void OnDisable()
+    {
+        EventManager.OnCardAction -= CheckKids;
     }
 
     public void CheckKids()
     {
+        
         int v;
         v = gameObject.transform.childCount;
+        //if(gameObject.transform.childCount == 0){return;}
         foreach (Transform child in gameObject.transform)
         {
             gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(320f * v, 500f);
             gameObject.GetComponent<HorizontalLayoutGroup>().spacing = -100f * v;
         }
-
+        //print(gameObject.name + " Child Amount: " +gameObject.transform.childCount);
+        
         //localMousePosition = gameObject.GetComponent<RectTransform>().InverseTransformPoint(Input.mousePosition);
         //print(localMousePosition);
         // if (gameObject.GetComponent<RectTransform>().rect.Contains(localMousePosition))

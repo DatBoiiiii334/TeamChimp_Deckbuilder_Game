@@ -11,11 +11,15 @@ public class EventManager : MonoBehaviour, IDropHandler, IPointerEnterHandler, I
     public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log("OnPointerEnter");
+        //OnCardAction?.Invoke();
+        //OnCardAction?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         //Debug.Log("OnPointerExit");
+        //OnCardAction?.Invoke();
+        
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -24,6 +28,7 @@ public class EventManager : MonoBehaviour, IDropHandler, IPointerEnterHandler, I
         //Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
         DragMe d = eventData.pointerDrag.GetComponent<DragMe>();
         d.parentToReturnTo = this.transform;
-        OnCardAction();
+        OnCardAction?.Invoke();
+        //print("Dopped");
     }
 }

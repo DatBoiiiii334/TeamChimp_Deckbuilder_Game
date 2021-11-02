@@ -15,6 +15,7 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         this.transform.SetParent(this.transform.parent.parent);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         GetComponent<RectTransform>().transform.rotation = Quaternion.Euler(0f,0f,0f); 
+        //XXXXXX._instanceXXX.CheckKids();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -25,6 +26,7 @@ public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //XXXXXX._instanceXXX.CheckKids();
         this.transform.SetParent(parentToReturnTo);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         GetComponent<RectTransform>().transform.rotation = Quaternion.Euler(0f,0f,5f); 

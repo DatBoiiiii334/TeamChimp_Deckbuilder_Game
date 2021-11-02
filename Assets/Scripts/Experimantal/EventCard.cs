@@ -17,17 +17,19 @@ public class EventCard : MonoBehaviour, IDamageCard
     void OnEnable()
     {
         EventManager.OnCardAction += doDamage;
+        print("EventCard");
+        //EnemyEventField.OnCardActionEnemy += doDamage;
     }
 
     void OnDisable()
     {
         EventManager.OnCardAction -= doDamage;
+        //EnemyEventField.OnCardActionEnemy -= doDamage;
     }
 
     public void doDamage()
     {
-        print("Activate!");
-        Attack( cardAttackValue, cardManaCost, TestManager._instance.EnemyLastDamageTaken);
+        Attack(cardAttackValue, cardManaCost, TestManager._instance.EnemyLastDamageTaken);
     }
 
     void Attack(int cardDamage, int cardManaCost, int enemyLastDamageTaken)
@@ -41,11 +43,9 @@ public class EventCard : MonoBehaviour, IDamageCard
             TestManager._instance.EnemyHP -= var;
             TestManager._instance.PlayerManaAmount -= cardManaCost;
             enemyLastDamageTaken = cardDamage;
-            print(TestManager._instance.EnemyHP);
         }
         else if (cardDamage <= TestManager._instance.EnemyShield)
         {
-            print("enemyshield is stronger");
             TestManager._instance.EnemyShield -= cardDamage;
             TestManager._instance.PlayerManaAmount -= cardManaCost;
         }
