@@ -4,131 +4,25 @@ using UnityEngine.EventSystems;
 
 public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    //public Draggable.cardType _CardType = Draggable.cardType.DAMAGE;
-    public Card.cardType _CardType;
-    public bool HasMana = true;
-    public Component[] kaarten;
-    public Transform playerCardDeck;
-    public bool playerField;
+    public void OnPointerEnter(PointerEventData eventData) { }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        //Debug.Log("OnPointerEnter");
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        //Debug.Log("OnPointerExit");
-    }
+    public void OnPointerExit(PointerEventData eventData) { }
 
     public void OnDrop(PointerEventData eventData)
     {
-        //Debug.Log(eventData.pointerDrag.name + "was dropped on " + gameObject.name);
-        Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
+        Draggable DroppedCardDragComponent = eventData.pointerDrag.GetComponent<Draggable>();
+        CardTemplate DroppedCard = eventData.pointerDrag.GetComponent<CardTemplate>();
 
-        //if (d != null) { return; }
-        //if (d._CardType != _CardType) { return; }
-        //if (d.TempMana > Player._player.Mana) { return; }
+        if (DroppedCard == null) { return; }
+        if (DroppedCard.card.Mana > Player._player.Mana) { return; }
 
-        if (d != null)
-        {
-            if (_CardType == d._CardType)
-            {
-                if (d.TempMana <= Player._player.Mana)
-                {
-                    d.parentToReturnTo = this.transform;
-                }
-            }
-        }
-
-        //d.parentToReturnTo = this.transform;
+        DroppedCardDragComponent.parentToReturnTo = this.transform;
+        CommidCardAction(DroppedCard);
     }
 
-    public void Update()
+    public void CommidCardAction(CardTemplate _droppedCard)
     {
-        kaarten = GetComponentsInChildren<CardTemplate>();
-
-        foreach (CardTemplate kaart in kaarten)
-        {
-            //if (!Player.HasEnoughManaForCard(kaart.card.Mana)) { continue; }
-            if (Player._player.Mana < kaart.card.Mana)
-            {
-                HasMana = false;
-            }
-            else if (Player._player.Mana >= kaart.card.Mana)
-            {
-                HasMana = true;
-
-                int type = (int)kaart.card.CardOfType;
-                switch (type)
-                {
-                    case 0: //DAMAGE
-                        print("DAMAGE");
-                        if (kaart.card.AttackDamage > EnemyBody._instanceEnemyBody.Shield)
-                        {
-                            int var;
-                            int kaartDamage = kaart.card.AttackDamage;
-                            StartCoroutine(StartCombat("DoAttackAnim"));
-                            //Do attack anim
-                            var = kaartDamage -= EnemyBody._instanceEnemyBody.Shield;
-                            EnemyBody._instanceEnemyBody.Shield = 0;
-                            EnemyBody._instanceEnemyBody.Health -= var;
-                            Player._player.Mana -= kaart.card.Mana;
-                            EnemyBody._instanceEnemyBody.lastDamageDealtTo = kaart.card.AttackDamage;
-                            //Stop attack anim
-                            Destroy(kaart.gameObject);
-                        }
-                        else if (kaart.card.AttackDamage <= EnemyBody._instanceEnemyBody.Shield)
-                        {
-                            Destroy(kaart.gameObject);
-                            StartCoroutine(StartCombat("DoAttackAnim"));
-                            EnemyBody._instanceEnemyBody.Shield -= kaart.card.AttackDamage;
-                            Player._player.Mana -= kaart.card.Mana;
-                            EnemyBody._instanceEnemyBody.lastDamageDealtTo = kaart.card.AttackDamage;
-                        }
-                        break;
-
-                    case 1: // HEAL
-                        print("HEAL");
-                        Player._player.Health += kaart.card.Health;
-                        Player._player.Shield += kaart.card.Shield;
-                        Player._player.Mana -= kaart.card.Mana;
-                        StartCoroutine(StartCombat("DoHealAnim"));
-                        Destroy(kaart.gameObject);
-                        break;
-
-                    case 2: //VAMPIRIC
-                        print("VAMPIRIC");
-                        if (EnemyBody._instanceEnemyBody.Shield <= 0)
-                        {
-                            EnemyBody._instanceEnemyBody.Health -= kaart.card.AttackDamage;
-                            Player._player.Health += EnemyBody._instanceEnemyBody.lastDamageDealtTo;
-                            EnemyBody._instanceEnemyBody.lastDamageDealtTo = 0;
-                            Player._player.Mana -= kaart.card.Mana;
-                            StartCoroutine(StartCombat("DoHealAnim"));
-                            Destroy(kaart.gameObject);
-                        }
-                        else
-                        {
-                            Player._player.Mana -= kaart.card.Mana;
-                            StartCoroutine(StartCombat("DoHealAnim"));
-                            Destroy(kaart.gameObject);
-                        }
-                        break;
-
-                    default: // Card has no grade
-                        break;
-                }
-            }
-        }
-    }
-
-
-    public IEnumerator StartCombat(string whatToDo)
-    {
-        Player._player.anim.SetBool(whatToDo, true);
-        yield return new WaitForSeconds(0.1f);
-        Player._player.anim.SetBool(whatToDo, false);
-        StopAllCoroutines();
+        _droppedCard.ExecuteAction();
+        Destroy(_droppedCard.gameObject);
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player : Humanoid
+public class TestPlayer : Humanoid
 {
-    public static Player _player;
+    public static TestPlayer _testPlayer;
     public int Mana;
     public TextMeshProUGUI ManaField;
     public Slider hpSlider, shieldSlider;
@@ -14,11 +14,11 @@ public class Player : Humanoid
 
     private void Awake()
     {
-        if (_player != null)
+        if (_testPlayer != null)
         {
             Destroy(gameObject);
         }
-        _player = this;
+        _testPlayer = this;
         anim = gameObject.GetComponent<Animator>();
     }
 

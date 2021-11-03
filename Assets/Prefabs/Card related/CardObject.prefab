@@ -75,6 +75,7 @@ MonoBehaviour:
   parentToReturnTo: {fileID: 0}
   cardDeckTransform: {fileID: 0}
   _CardType: 0
+  applyToPlayer: 0
   TempMana: 0
 --- !u!225 &6892161756016297711
 CanvasGroup:

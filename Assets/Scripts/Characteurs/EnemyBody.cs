@@ -43,11 +43,12 @@ public class EnemyBody : MonoBehaviour
         Health = _core.maxHealth;
         Shield = _core.maxShield;
         //myAnimator = _core.animController;
-        myAnimator = GetComponent<Animator>();
+        myAnimator = gameObject.GetComponent<Animator>();
         hpSlider.maxValue = _core.maxHealth;
+        UpdateEnemyUI();
     }
 
-    public void Update()
+    public void UpdateEnemyUI()
     {
         lastDamageDealtToField.text = lastDamageDealtTo.ToString();
         hpSlider.value = Health;
@@ -131,6 +132,7 @@ public class EnemyBody : MonoBehaviour
         StartCoroutine(EnemyDoAttack("Heal"));
         EnemyBody._instanceEnemyBody.Shield += shield;
         EnemyBody._instanceEnemyBody.Health += heal;
+        
     }
 
     public void ComidAttack(int damage, string call)
@@ -140,6 +142,7 @@ public class EnemyBody : MonoBehaviour
             //PLAY COMBAT ANIMATION
             StartCoroutine(EnemyDoAttack("BasicAttack"));
             Player._player.Shield -= damage;
+            Player._player.UpdatePlayerUI();
         }
         else if (Player._player.Shield < damage)
         {
@@ -149,6 +152,7 @@ public class EnemyBody : MonoBehaviour
             var = damage -= Player._player.Shield;
             Player._player.Health -= var;
             Player._player.Shield = 0;
+            Player._player.UpdatePlayerUI();
             if (Player._player.Health <= 0)
             {
                 GameManager._instance.LoseScreen.SetActive(true);

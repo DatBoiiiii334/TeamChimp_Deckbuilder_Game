@@ -25,7 +25,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void Update()
     {
-        TempMana = myCardTemplate.card.Mana;
+        //TempMana = myCardTemplate.card.Mana;
     }
 
 

@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
     public static GameManager _instance;
     public GameObject CardSpawn, winScreen, LoseScreen;
     public bool PlayerTurn;
+    //Player stats 
+    public int playerHp, playerShield, playerMana;
+    public int enemyHp, enemeyShield, enemyLastDamageTaken;
+
+
     private CardController _cardController;
 
     public void Start()
@@ -15,7 +20,6 @@ public class GameManager : MonoBehaviour
         _cardController = GetComponent<CardController>();
         GiveHand();
     }
-
 
     public void EndPlayerTurn()
     {
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour
         else
         {
             PlayerTurn = false;
+            EnemyBody._instanceEnemyBody.UpdateEnemyUI();
             GiveHand();
         }
     }
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour
 
         //Give Mana to Player
         Player._player.Mana = 5;
+        Player._player.UpdatePlayerUI();
 
         //Add 5 new random cards
         for (int i = 0; i < 5; i++)
