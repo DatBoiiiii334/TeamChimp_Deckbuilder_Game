@@ -35,3 +35,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Prefabs/md_PlaceHolderScene.fbx.meta
+Assets/Prefabs/md_PlaceHolderScene.fbx

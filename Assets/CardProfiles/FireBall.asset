@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1030eb68c8bb8449a14bb371e382b4, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: 
-  name: FireBall
-  Description: You cast a magic fireball
+  ID: 0
+  _name: Fireball
+  _description: Fires a cool fireball
   Image: {fileID: 21300000, guid: d6c6374f19c250942977d9ca5af16fe3, type: 3}
-  Mana: 5
-  AttackDamage: 10
-  Health: 3
+  _mana: 2
+  _attackDamage: 5
+  _health: 0
+  _cardOfType: 0
