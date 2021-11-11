@@ -6,28 +6,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     public Transform parentToReturnTo = null;
     public Transform cardDeckTransform;
-    // public enum cardType {DAMAGE, MAGIC, ARMOR, BLEED}
-    //public cardType CardOfType = cardType.DAMAGE;
     public Card.cardType _CardType;
     public bool applyToPlayer;
     private CardTemplate myCardTemplate;
     public int TempMana;
-    //public Card _card;
-    //public cardType CardOfType = _card.CardOfType;
 
     public void Start()
     {
         myCardTemplate = GetComponent<CardTemplate>();
-        _CardType = myCardTemplate._card;
+        //_CardType = myCardTemplate._card;
         cardDeckTransform = this.transform.parent;
-        applyToPlayer = myCardTemplate.card.ApplyToPlayer;
     }
-
-    public void Update()
-    {
-        //TempMana = myCardTemplate.card.Mana;
-    }
-
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -39,11 +28,13 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         this.transform.position = eventData.position;
+        gameObject.transform.localScale = new Vector3(1f,1f,5f);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         this.transform.SetParent(parentToReturnTo);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+        gameObject.transform.localScale = new Vector3(1f,1f,0f);
     }
 }

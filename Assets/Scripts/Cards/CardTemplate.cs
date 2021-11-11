@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,7 +11,7 @@ public class CardTemplate : MonoBehaviour
 
     public TextMeshProUGUI nameText, descriptionText, ManaValue, AttackValue, HealValue;
     //public card.cardType myCardType;
-    public Card.cardType _card;
+    //public Card.cardType _card;
     public Image CharCardArt;
 
     private void Start()
@@ -23,29 +21,19 @@ public class CardTemplate : MonoBehaviour
         CharCardArt.sprite = card.Image;
         descriptionText.text = card.Description;
         ManaValue.text = card.Mana.ToString();
-        AttackValue.text = card.AttackDamage.ToString();
-        HealValue.text = card.Health.ToString();
-        _card = card.CardOfType;
+
+        //AttackValue.text = card.AttackDamage.ToString();
+        //HealValue.text = card.Health.ToString();
+       // _card = card.CardOfType;
     }
 
     public void ScriptAdder()
     {
-        switch ((int)card.CardOfType)
+        foreach (BaseEffect ability in card.Effects)
         {
-            case 0:
-                RawDamage rd = gameObject.AddComponent<RawDamage>();
-                break;
-
-            case 1:
-                HealPlayer hp = gameObject.AddComponent<HealPlayer>();
-                break;
-
-            case 2:
-                VampiricStrike vp = gameObject.AddComponent<VampiricStrike>();
-                break;
-
-            default:
-                break;
+            if (card.Effects.Count == 0) { return; }
+            ability.template = gameObject.GetComponent<CardTemplate>();
+            myCardSpells += ability.ApplyEffect;
         }
     }
 
@@ -54,6 +42,9 @@ public class CardTemplate : MonoBehaviour
         if (myCardSpells != null)
         {
             myCardSpells();
+            Player._player.Mana -= card.Mana;
+            Player._player.UpdatePlayerUI();
+            EnemyBody._instanceEnemyBody.UpdateEnemyUI();
         }
     }
 }
