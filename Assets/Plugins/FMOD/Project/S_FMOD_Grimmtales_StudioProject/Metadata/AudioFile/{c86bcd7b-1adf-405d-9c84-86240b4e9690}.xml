@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c86bcd7b-1adf-405d-9c84-86240b4e9690}">
+		<property name="assetPath">
+			<value>SwipeAttack/PreWhip/Paper A4 handling-005.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3889166666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dbfc758a-f35e-41e6-86ab-222446aefc37}</destination>
+		</relationship>
+	</object>
+</objects>

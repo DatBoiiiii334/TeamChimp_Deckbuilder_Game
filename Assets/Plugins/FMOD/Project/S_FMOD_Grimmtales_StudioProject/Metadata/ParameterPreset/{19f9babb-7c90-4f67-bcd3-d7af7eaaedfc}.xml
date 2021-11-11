@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{19f9babb-7c90-4f67-bcd3-d7af7eaaedfc}">
+		<property name="name">
+			<value>DamageReveiced</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e5624e82-c7d5-4987-99ce-b0df475869ea}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{cc3d282c-a909-44b3-9507-5fad14ecc4ef}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{cc3d282c-a909-44b3-9507-5fad14ecc4ef}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

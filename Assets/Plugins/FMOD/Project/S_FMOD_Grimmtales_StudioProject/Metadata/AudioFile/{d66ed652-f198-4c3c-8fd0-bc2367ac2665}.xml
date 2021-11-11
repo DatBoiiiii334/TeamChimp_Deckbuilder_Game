@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{b17ab4b0-9e02-4fad-965b-54d65203230b}">
+	<object class="AudioFile" id="{d66ed652-f198-4c3c-8fd0-bc2367ac2665}">
 		<property name="assetPath">
-			<value>SwipeAttack/PaperHitSounds/S_O_2_PaperHitSound-004.wav</value>
+			<value>PaperHitSound/PaperHitSound-006.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.5556689342403629</value>
+			<value>1.8946258503401361</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{dbfc758a-f35e-41e6-86ab-222446aefc37}</destination>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{1db36be5-f119-4873-b8fc-0326494c38e1}">
+		<property name="assetPath">
+			<value>SwipeAttack/PreWhip/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dbfc758a-f35e-41e6-86ab-222446aefc37}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="SandboxScene" id="{e8140cbd-fc8e-40c6-b023-54cc826243cc}">
+		<property name="name">
+			<value>New Scene</value>
+		</property>
+		<relationship name="folder">
+			<destination>{63ffda8d-3e6e-4f21-8fa8-4d78ce4ad082}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{0cbe646a-5332-4c36-bc50-7538a467335f}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{2f1b4413-4e03-47ae-b9c3-7c763dacb1c9}</destination>
+		</relationship>
+		<relationship name="emitters">
+			<destination>{005434b7-d68e-4b56-9732-57bc05a53398}</destination>
+			<destination>{52dc020d-4d97-4c4d-919d-e8f2c26aa0be}</destination>
+			<destination>{00671d58-5786-4dff-b0d7-4c4898e5855d}</destination>
+		</relationship>
+	</object>
+	<object class="MarkerTrack" id="{0cbe646a-5332-4c36-bc50-7538a467335f}" />
+	<object class="Timeline" id="{2f1b4413-4e03-47ae-b9c3-7c763dacb1c9}" />
+	<object class="SandboxEmitter" id="{005434b7-d68e-4b56-9732-57bc05a53398}">
+		<property name="positionX">
+			<value>-0.699999988</value>
+		</property>
+		<property name="positionZ">
+			<value>3.625</value>
+		</property>
+		<relationship name="event">
+			<destination>{71c239a9-9892-4ac5-8f7e-e5008bfc97e7}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{52dc020d-4d97-4c4d-919d-e8f2c26aa0be}">
+		<property name="positionX">
+			<value>-4.5999999</value>
+		</property>
+		<property name="positionZ">
+			<value>2.35000014</value>
+		</property>
+		<relationship name="event">
+			<destination>{ce450501-1fad-4c22-8d67-245c2596a576}</destination>
+		</relationship>
+	</object>
+	<object class="SandboxEmitter" id="{00671d58-5786-4dff-b0d7-4c4898e5855d}">
+		<property name="positionX">
+			<value>2.92499995</value>
+		</property>
+		<property name="positionZ">
+			<value>-0.100000001</value>
+		</property>
+		<relationship name="event">
+			<destination>{9160e66d-6dce-48fa-a7a0-51fbd9b2bb2c}</destination>
+		</relationship>
+	</object>
+</objects>
