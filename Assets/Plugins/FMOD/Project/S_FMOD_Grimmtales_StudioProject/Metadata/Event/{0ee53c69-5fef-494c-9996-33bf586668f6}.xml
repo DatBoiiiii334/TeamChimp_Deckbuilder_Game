@@ -259,16 +259,13 @@
 	</object>
 	<object class="MultiSound" id="{22a8ebfe-4ccf-42c1-9c1b-2386f540e5be}">
 		<property name="length">
-			<value>0.64000000000000001</value>
+			<value>0.57999999999999996</value>
 		</property>
 		<property name="pitch">
 			<value>-0.900000036</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{531d2d6a-0854-4e59-9b5c-4a67bde62c8e}</destination>
-		</relationship>
-		<relationship name="fadeInCurve">
-			<destination>{8f270e78-1b11-44e7-9ea6-962e0b7b5031}</destination>
 		</relationship>
 		<relationship name="fadeOutCurve">
 			<destination>{a1043e0b-8fc3-41af-8b0c-843b133a9892}</destination>
@@ -442,14 +439,6 @@
 		<property name="amount">
 			<value>6</value>
 		</property>
-	</object>
-	<object class="FadeCurve" id="{8f270e78-1b11-44e7-9ea6-962e0b7b5031}">
-		<relationship name="startPoint">
-			<destination>{462bd316-79d6-43dc-a6b6-412598b6d560}</destination>
-		</relationship>
-		<relationship name="endPoint">
-			<destination>{26f205c9-04ea-4995-a40d-e100016bcd4d}</destination>
-		</relationship>
 	</object>
 	<object class="FadeCurve" id="{a1043e0b-8fc3-41af-8b0c-843b133a9892}">
 		<relationship name="startPoint">
@@ -649,39 +638,20 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{a55e983c-9458-4f89-8b13-c530de6ce3eb}" />
-	<object class="AutomationPoint" id="{462bd316-79d6-43dc-a6b6-412598b6d560}">
-		<property name="position">
-			<value>0</value>
-		</property>
-		<property name="value">
-			<value>0</value>
-		</property>
-		<property name="curveShape">
-			<value>-0.2547189</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{26f205c9-04ea-4995-a40d-e100016bcd4d}">
-		<property name="position">
-			<value>0.10000000000000001</value>
-		</property>
-		<property name="value">
-			<value>1</value>
-		</property>
-	</object>
 	<object class="AutomationPoint" id="{906f1eee-81d0-4246-b589-6cd47095c6d9}">
 		<property name="position">
-			<value>0.12</value>
+			<value>0</value>
 		</property>
 		<property name="value">
 			<value>1</value>
 		</property>
 		<property name="curveShape">
-			<value>-0.366324514</value>
+			<value>-0.201278463</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{8d946eff-f50d-473b-a2a0-0330a1638aaf}">
 		<property name="position">
-			<value>0.63999999999999979</value>
+			<value>0.57999999999999974</value>
 		</property>
 		<property name="value">
 			<value>0</value>
@@ -698,7 +668,7 @@
 	</object>
 	<object class="ThreeEQEffect" id="{ac13d256-126d-4856-aec3-b6d79ecb01a0}">
 		<property name="lowGain">
-			<value>-10</value>
+			<value>-6.5</value>
 		</property>
 		<property name="highGain">
 			<value>-80</value>
