@@ -8,13 +8,11 @@ public class PlayerTurnState : State
 
     public override void Enter()
     {
-        print("PlayerTurnState");
         StartCoroutine(ShowPlayerTurn());
     }
 
     public override void Exit()
     {
-        print("End PlayerTurnState");
         CardDeckBlocker.SetActive(true);
     }
 

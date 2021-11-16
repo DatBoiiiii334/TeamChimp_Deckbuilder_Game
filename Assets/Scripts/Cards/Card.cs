@@ -17,7 +17,7 @@ public class Card : ScriptableObject
     [SerializeField]
     private int _mana, _attackDamage, _tickDamage,_health, _shield;
 
-    public enum cardType { DAMAGE, HEALING, VAMPIRIC }
+    public enum cardType { DAMAGE, HEALING, VAMPIRIC, DEFENSE}
     public string Name { get { return _name; } }
     public string Description { get { return _description; } }
     public int Mana { get { return _mana; } }

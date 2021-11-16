@@ -7,6 +7,7 @@ public class FireEffect : BaseEffect
 {
     public override void ApplyEffect()
     {
+        EnemyBody._instanceEnemyBody.forEnemyTicks += 1;
         //Apply Fire
         //TickManager._tickManager.forEnemyTicks += 3;
         //GameManager._instance.forEnemyTickDamage = template.card.AttackDamage;

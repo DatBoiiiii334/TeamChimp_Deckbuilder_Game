@@ -19,14 +19,12 @@ public class VampiricStrike : MonoBehaviour
             EnemyBody._instanceEnemyBody.Health -= myCardTemplate.card.AttackDamage;
             Player._player.Health += EnemyBody._instanceEnemyBody.lastDamageDealtTo;
             EnemyBody._instanceEnemyBody.lastDamageDealtTo = 0;
-            Player._player.Mana -= myCardTemplate.card.Mana;
             Player._player.anim.SetTrigger("DoAttackAnim");
             Player._player.UpdatePlayerUI();
             EnemyBody._instanceEnemyBody.UpdateEnemyUI();
         }
         else
         {
-            Player._player.Mana -= myCardTemplate.card.Mana;
             Player._player.anim.SetTrigger("DoAttackAnim");
             Player._player.UpdatePlayerUI();
             EnemyBody._instanceEnemyBody.UpdateEnemyUI();

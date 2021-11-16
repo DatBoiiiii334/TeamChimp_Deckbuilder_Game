@@ -16,7 +16,6 @@ public class HealPlayer : MonoBehaviour
     {
         Player._player.Health += myCardTemplate.card.Health;
         Player._player.Shield += myCardTemplate.card.Shield;
-        Player._player.Mana -= myCardTemplate.card.Mana;
         Player._player.anim.SetTrigger("DoHealAnim");
         Player._player.UpdatePlayerUI();
         EnemyBody._instanceEnemyBody.UpdateEnemyUI();

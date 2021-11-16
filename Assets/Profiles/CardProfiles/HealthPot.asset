@@ -18,10 +18,8 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 5db42434e55189348aa5977ca37e8c9d, type: 3}
   _mana: 2
   _attackDamage: 0
+  _tickDamage: 0
   _health: 10
   _shield: 0
   Effects:
-  - {fileID: 11400000, guid: 04290394ee7cf1644b114eccb17272d1, type: 2}
-  - {fileID: 11400000, guid: 66b0b5d0bb03a7240b9ca141dd859e8c, type: 2}
-  - {fileID: 11400000, guid: 04290394ee7cf1644b114eccb17272d1, type: 2}
   - {fileID: 11400000, guid: 04290394ee7cf1644b114eccb17272d1, type: 2}

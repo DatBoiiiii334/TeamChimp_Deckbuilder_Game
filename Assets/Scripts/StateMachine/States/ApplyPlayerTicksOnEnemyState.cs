@@ -1,15 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class ApplyPlayerTicksOnEnemyState : State
 {
     public static ApplyPlayerTicksOnEnemyState _PlayerToEnemyTickInstance;
-    public int forEnemyTicks;
 
     public override void Enter()
     {
-        print("ApplyPlayerTicksOnEnemyState");
-        if(forEnemyTicks > 0){
-            TickDamageToEnemy(GameManager._instance.forEnemyTickDamage);
+        if(EnemyBody._instanceEnemyBody.forEnemyTicks > 0){
+            StartCoroutine(DoTimedAction());
         }else{
             myFSM.SetCurrentState(typeof(EnemyTurnState));
         }
@@ -17,13 +16,20 @@ public class ApplyPlayerTicksOnEnemyState : State
 
     public override void Exit()
     {
-        Debug.Log("Exiting Apply Player Ticks On Enemy State");
     }
 
     public void TickDamageToEnemy(int tickDmg)
     {
         EnemyBody._instanceEnemyBody.Health -= tickDmg;
-        if (forEnemyTicks > 0){forEnemyTicks -= 1;}
+        EnemyBody._instanceEnemyBody.forEnemyTicks -= 1;
+        EnemyBody._instanceEnemyBody.UpdateEnemyUI();
+    }
+
+    IEnumerator DoTimedAction(){
+        yield return new WaitForSeconds(1f);
+        EnemyBody._instanceEnemyBody.myAnimator.SetTrigger("BleedDmg");
+        TickDamageToEnemy(GameManager._instance.forEnemyTickDamage);
+        yield return new WaitForSeconds(1f);
         myFSM.SetCurrentState(typeof(EnemyTurnState));
     }
 

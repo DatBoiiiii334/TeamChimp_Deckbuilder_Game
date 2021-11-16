@@ -22,7 +22,6 @@ public class RawDamage : MonoBehaviour
             var = kaartDamage -= EnemyBody._instanceEnemyBody.Shield;
             EnemyBody._instanceEnemyBody.Shield = 0;
             EnemyBody._instanceEnemyBody.Health -= var;
-            Player._player.Mana -= myCardTemplate.card.Mana;
             EnemyBody._instanceEnemyBody.lastDamageDealtTo = myCardTemplate.card.AttackDamage;
             Player._player.UpdatePlayerUI();
             EnemyBody._instanceEnemyBody.UpdateEnemyUI();
@@ -31,7 +30,6 @@ public class RawDamage : MonoBehaviour
         {
             Player._player.anim.SetTrigger("DoAttackAnim");
             EnemyBody._instanceEnemyBody.Shield -= myCardTemplate.card.AttackDamage;
-            Player._player.Mana -= myCardTemplate.card.Mana;
             EnemyBody._instanceEnemyBody.lastDamageDealtTo = myCardTemplate.card.AttackDamage;
             Player._player.UpdatePlayerUI();
             EnemyBody._instanceEnemyBody.UpdateEnemyUI();

@@ -6,10 +6,11 @@ public class EnemyBody : MonoBehaviour
 {
     public static EnemyBody _instanceEnemyBody;
     public EnemyCore _core;
-    public TextMeshProUGUI nameField, shieldField, NextEnemyAttack, lastDamageDealtToField;
+    public TextMeshProUGUI nameField, shieldField, NextEnemyAttack, lastDamageDealtToField, hpField, _forEnemyTicks;
     public Slider hpSlider;
     public Animator myAnimator;
-    public int Health, Shield, lastDamageDealtTo, enemyState, myNextAttack;
+    public GameObject BleedIconEnemy;
+    public int Health, Shield, lastDamageDealtTo, enemyState, myNextAttack, forEnemyTicks;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class EnemyBody : MonoBehaviour
 
     public void Start()
     {
-        nameField.text = _core.Name;
+        //nameField.text = _core.Name;
         Health = _core.maxHealth;
         Shield = _core.maxShield;
         //myAnimator = _core.animController;
@@ -37,8 +38,16 @@ public class EnemyBody : MonoBehaviour
 
     public void UpdateEnemyUI()
     {
+        if(forEnemyTicks > 0){
+            BleedIconEnemy.SetActive(true);
+            _forEnemyTicks.text = forEnemyTicks.ToString();
+        }
+        if(forEnemyTicks <= 0){
+            BleedIconEnemy.SetActive(false);
+        }
         lastDamageDealtToField.text = lastDamageDealtTo.ToString();
         hpSlider.value = Health;
+        hpField.text = Health.ToString() + "/"+ _core.maxHealth;
         shieldField.text = Shield.ToString();
     }
 

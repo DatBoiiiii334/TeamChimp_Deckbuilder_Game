@@ -11,7 +11,7 @@ public class CardTemplate : MonoBehaviour
 
     public TextMeshProUGUI nameText, descriptionText, ManaValue, AttackValue, HealValue;
     //public card.cardType myCardType;
-    //public Card.cardType _card;
+    public Card.cardType _card;
     public Image CharCardArt;
 
     private void Start()
@@ -24,7 +24,7 @@ public class CardTemplate : MonoBehaviour
 
         //AttackValue.text = card.AttackDamage.ToString();
         //HealValue.text = card.Health.ToString();
-       // _card = card.CardOfType;
+        //_card = card.cardType;
     }
 
     public void ScriptAdder()

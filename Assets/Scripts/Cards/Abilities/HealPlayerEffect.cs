@@ -8,7 +8,6 @@ public class HealPlayerEffect : BaseEffect
         Debug.Log("HealPlayerEffect");
         Player._player.Health += template.card.Health;
         Player._player.Shield += template.card.Shield;
-        Player._player.Mana -= template.card.Mana;
         Player._player.anim.SetTrigger("DoHealAnim");
         Player._player.UpdatePlayerUI();
         EnemyBody._instanceEnemyBody.UpdateEnemyUI();

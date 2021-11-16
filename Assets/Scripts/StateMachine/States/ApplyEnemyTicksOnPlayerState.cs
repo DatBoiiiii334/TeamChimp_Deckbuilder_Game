@@ -1,26 +1,42 @@
+using System.Collections;
 using UnityEngine;
 
-public class ApplyEnemyTicksOnPlayerState: State{
-
+public class ApplyEnemyTicksOnPlayerState : State
+{
     public static ApplyEnemyTicksOnPlayerState _EnemyToPlayerTickInstance;
-    public int forPlayerTicks, tickforPlayerDmg;
-    //tickdmg has to come form enemy.cs but for now has to be like this
 
     public override void Enter()
     {
         print("ApplyEnemyTicksOnPlayerState");
-        TickDamageToPlayer(tickforPlayerDmg);
+        if (Player._player.forPlayerTicks > 0)
+        {
+            StartCoroutine(DoTimedAction());
+        }
+        else
+        {
+            myFSM.SetCurrentState(typeof(PlayerTurnState));
+        }
     }
 
     public override void Exit()
     {
         Debug.Log("Exiting Apply Enemy Ticks On Player State");
+        StopCoroutine(DoTimedAction());
     }
 
     public void TickDamageToPlayer(int tickDmg)
     {
-        EnemyBody._instanceEnemyBody.Health -= tickDmg;
-        if (forPlayerTicks > 0){forPlayerTicks -= 1;}
+        Player._player.anim.SetTrigger("TakeDMG");
+        Player._player.Health -= tickDmg;
+        Player._player.forPlayerTicks -= 1;
+        Player._player.UpdatePlayerUI();
+    }
+
+    IEnumerator DoTimedAction()
+    {
+        yield return new WaitForSeconds(1f);
+        TickDamageToPlayer(Player._player.tickforPlayerDmg);
+        yield return new WaitForSeconds(1f);
         myFSM.SetCurrentState(typeof(PlayerTurnState));
     }
 
