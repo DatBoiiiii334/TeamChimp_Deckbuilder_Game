@@ -37,4 +37,4 @@ sysinfo.txt
 *.unitypackage
 Assets/Prefabs/md_PlaceHolderScene.fbx.meta
 Assets/Prefabs/md_PlaceHolderScene.fbx
-Logs/AssetImportWorker0.log
+*.log

@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-[CreateAssetMenu(fileName = "newCard", menuName = "CreateNewCard", order = 1)]
+[CreateAssetMenu(fileName = "new Enemy", menuName = "Create New Enemy", order = 2)]
 public class EnemyCore : ScriptableObject
 {
     [SerializeField]
-    private int ID;
+    private string _name;
     [SerializeField]
-    private string _name, _description;
-    public Sprite Image;
-    [SerializeField]
-    private int _mana, _attackDamage, _health;
-    [SerializeField]
-    private cardType _cardOfType;
+    private int _maxHealth, _maxShield, _basicAttack, _specialAttack, _maxBuff;
+    public GameObject enemyGameObject;
 
-    public enum cardType { DAMAGE, HEALING }
+    //public Animator animController;
     public string Name { get { return _name; } }
-    public string Description { get { return _description; } }
-    public int Mana { get { return _mana; } }
-    public int AttackDamage { get { return _attackDamage; } }
-    public int Health { get { return _health; } }
-    public cardType CardOfType { get { return _cardOfType; } }
+    public int maxHealth { get { return _maxHealth; } }
+    public int maxShield { get { return _maxShield; } }
+    public int maxBuff { get { return _maxBuff; } }
+    public int basicAttack { get { return _basicAttack; } }
+    public int specialAttack { get { return _specialAttack; } }
 }
