@@ -144,6 +144,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1072,6 +1073,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Red_idle_26: -4552047134146819677
+      Red_idle_1: 6866355669182520498
+      Red_idle_17: 4508108629894858528
+      Red_idle_23: -1303226752998497092
+      Red_idle_31: -5778224268769787113
+      Red_idle_29: 4178502934744562529
+      Red_idle_35: 741983724239692590
+      Red_idle_10: 8464818018040579295
+      Red_idle_22: -8796769421818598013
+      Red_idle_38: 2881053309779117600
+      Red_idle_37: -3285735632706471305
+      Red_idle_34: 8722368904467386316
+      Red_idle_6: 3707275707358210804
+      Red_idle_28: -7328790419029919936
+      Red_idle_5: -577653729707416819
+      Red_idle_7: -7351415855186675250
+      Red_idle_27: 6700540426935472639
+      Red_idle_9: 2940039414154967257
+      Red_idle_36: 2896055679014464785
+      Red_idle_15: 2891343371599905382
+      Red_idle_12: 6317738881771386257
+      Red_idle_3: -6984185000125221763
+      Red_idle_11: -2182974362560173422
+      Red_idle_13: 83801197961265098
+      Red_idle_21: 1791918799422273858
+      Red_idle_25: 4534165969500986387
+      Red_idle_30: -2588496998491700387
+      Red_idle_24: -7929281893433396788
+      Red_idle_0: 8126975457988100822
+      Red_idle_32: -7300641648986289519
+      Red_idle_20: -5749376051203025278
+      Red_idle_14: -4060218683490672427
+      Red_idle_16: -7992633325961156365
+      Red_idle_18: -1017532669442251805
+      Red_idle_33: 3347203570389644920
+      Red_idle_8: 1756571819979028236
+      Red_idle_2: -6403772168740732214
+      Red_idle_4: 2319639494982181483
+      Red_idle_19: 1123968564085892272
+      Red_idle_39: -5514952584111663587
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
