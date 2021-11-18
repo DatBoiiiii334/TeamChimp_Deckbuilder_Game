@@ -6,25 +6,43 @@ using TMPro;
 
 public class Player : Humanoid
 {
-    public static Player _instance;
-    public int Mana;
-    public TextMeshProUGUI ManaField;
+    public static Player _player;
+    public int Mana, forPlayerTicks, tickforPlayerDmg;
+    public TextMeshProUGUI ManaField, _forPlayerTicks;
+    public GameObject BleedIcon;
+    public Slider hpSlider;
+    public Animator anim;
 
-    public void Update()
+    private void Awake()
     {
-        NameField.text = Name;
-        HealthField.text = Health.ToString();
-        ShieldField.text = Shield.ToString();
-        ManaField.text = Mana.ToString();
-    }
-
-    private void Awake(){
-
-        if(_instance != null){
+        if (_player != null)
+        {
             Destroy(gameObject);
         }
+        _player = this;
+        anim = gameObject.GetComponent<Animator>();
+    }
 
-        _instance = this;
+    public void Start()
+    {
+        anim.Play("DEV_Idle");
+        hpSlider.maxValue = maxHealth;
+        UpdatePlayerUI();
+    }
 
+    public void UpdatePlayerUI()
+    {
+        //NameField.text = Name;
+        if(forPlayerTicks > 0){
+            BleedIcon.SetActive(true);
+            _forPlayerTicks.text = forPlayerTicks.ToString();
+        }
+        if(forPlayerTicks <= 0){
+            BleedIcon.SetActive(false);
+        }
+        HealthField.text = Health.ToString() + "/" + maxHealth;
+        ShieldField.text = Shield.ToString();
+        //ManaField.text = Mana.ToString();
+        hpSlider.value = Health;
     }
 }

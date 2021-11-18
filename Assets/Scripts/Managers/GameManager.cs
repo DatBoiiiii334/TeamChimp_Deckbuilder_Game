@@ -5,63 +5,89 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    public GameObject CardSpawn;
-    public bool PlayerTurn;
+    public GameObject CardSpawn, winScreen, LoseScreen;
+    public int forEnemyTickDamage;
+    FSM myFSM;
+
     private CardController _cardController;
-    //private Player _player;
 
-    public void Start(){
-        PlayerTurn = true;
-        _cardController = GetComponent<CardController>();
-        GiveHand();
-        //_player = GetComponent<Player>();
-    }
-
-    public void Update()
+    public void Start()
     {
-        //
+        myFSM = GetComponent<FSM>();
+        State[] myStatearray = GetComponents<State>();
+        foreach(State state in myStatearray){
+            myFSM.Add(state.GetType(),state);
+        }
+        myFSM.SetCurrentState(typeof(PlayerTurnState));
     }
 
-    public void EndPlayerTurn(){
-        PlayerTurn = false;
-        GiveHand();
+    public void isEnemyDead(){
+        if (EnemyBody._instanceEnemyBody.Health <= 0)
+        {
+            winScreen.SetActive(true);
+            CardPicker.instance_CardPicker.OpenNewCardsWindow();
+        }
     }
 
-    public void GiveHand(){
-        //Remove old Cards 
-        RemoveCards();
+    public void DamageEnemy(int damage){
+        if (damage >= EnemyBody._instanceEnemyBody.Shield)
+        {
+            int var;
+            int kaartDamage = damage;
+            Player._player.anim.SetTrigger("DoAttackAnim");
+            var = kaartDamage -= EnemyBody._instanceEnemyBody.Shield;
+            EnemyBody._instanceEnemyBody.Shield = 0;
+            EnemyBody._instanceEnemyBody.Health -= var;
+            EnemyBody._instanceEnemyBody.lastDamageDealtTo = var;
+            Debug.Log("damage to enemy: " + var);
+        }
+        else if (damage < EnemyBody._instanceEnemyBody.Shield)
+        {
+            Player._player.anim.SetTrigger("DoAttackAnim");
+            EnemyBody._instanceEnemyBody.Shield -= damage;
+            EnemyBody._instanceEnemyBody.lastDamageDealtTo = damage;
+        }
+    }
 
-        //Give Mana to Player
-        Player._instance.Mana = 5;
+    public void TickDmg(int damage){
+        if(TickManager._tickManager.forEnemyTicks > 0){
+            TickManager._tickManager.ApplyTickToEnemy(damage);
+        }
+    }
 
-        //Add 5 new random cards
-        for(int i = 0; i<5; i++ ){
-            //Debug.Log("hi "+ i + "x");
+    public void GiveHand()
+    {
+        RemoveCards(CardSpawn.transform);
+        for (int i = 0; i < 5; i++)
+        {
             _cardController.BuyCard();
-        }   
+        }
     }
 
 
-    public void RemoveCards(){
-        //Put all children from hand in a List
+    public void RemoveCards(Transform cardSpawn)
+    {
         var children = new List<GameObject>();
-        foreach(Transform child in CardSpawn.transform) {
+        foreach (Transform child in cardSpawn)
+        {
             children.Add(gameObject);
         }
-        if (children.Count >= 0) {
-            foreach (Transform child in CardSpawn.transform) {
+        if (children.Count >= 0)
+        {
+            foreach (Transform child in cardSpawn)
+            {
                 Destroy(child.gameObject);
             }
         }
-
-
-        // kill each item in list
     }
 
-    private void Awake(){
-        if(_instance != null){
+    private void Awake()
+    {
+        if (_instance != null)
+        {
             Destroy(gameObject);
         }
         _instance = this;
+        _cardController = GetComponent<CardController>();
     }
 }

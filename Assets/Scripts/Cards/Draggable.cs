@@ -5,37 +5,36 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Transform parentToReturnTo = null;
-   // public enum cardType {DAMAGE, MAGIC, ARMOR, BLEED}
-    //public cardType CardOfType = cardType.DAMAGE;
+    public Transform cardDeckTransform;
     public Card.cardType _CardType;
+    public bool applyToPlayer;
     private CardTemplate myCardTemplate;
-    //public Card _card;
-    //public cardType CardOfType = _card.CardOfType;
+    public int TempMana;
 
-    public void Start(){
+    public void Start()
+    {
         myCardTemplate = GetComponent<CardTemplate>();
-        _CardType = myCardTemplate._card;
+        //_CardType = myCardTemplate._card;
+        cardDeckTransform = this.transform.parent;
     }
 
-
-    public void OnBeginDrag(PointerEventData eventData){
-        //Debug.Log("OnBeginDrag");
+    public void OnBeginDrag(PointerEventData eventData)
+    {
         parentToReturnTo = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent);
-
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
-    public void OnDrag(PointerEventData eventData){
-       // Debug.Log("OnDrag");
+    public void OnDrag(PointerEventData eventData)
+    {
         this.transform.position = eventData.position;
+        gameObject.transform.localScale = new Vector3(1f,1f,5f);
     }
 
-    public void OnEndDrag(PointerEventData eventData){
-       // Debug.Log("OnEndDrag");
+    public void OnEndDrag(PointerEventData eventData)
+    {
         this.transform.SetParent(parentToReturnTo);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-
+        gameObject.transform.localScale = new Vector3(1f,1f,0f);
     }
 }
