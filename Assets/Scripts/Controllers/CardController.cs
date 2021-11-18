@@ -21,18 +21,6 @@ public class CardController : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        if (instance_CardController != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance_CardController = this;
-        }
-    }
-
     public void SpawnCard()
     {
         for (int i = 0; i < AllCardProfiles.Count; i++)
@@ -55,9 +43,20 @@ public class CardController : MonoBehaviour
         index = Random.Range(0, playerCardProfileDictionary.Count);
         myCard = Instantiate(CardPrefab, CardSpawnPoint.transform);
         myCard.GetComponent<CardTemplate>().card = playerCardProfileDictionary[AllCardProfiles[index].name];
+        CardSystemManager._instance.AddCardToCardDeck(myCard, myCard.GetComponent<Draggable>());
     }
 
-    
+    private void Awake()
+    {
+        if (instance_CardController != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance_CardController = this;
+        }
+    }    
 }
 
 

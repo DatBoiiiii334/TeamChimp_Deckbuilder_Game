@@ -9,11 +9,26 @@ public class PlayerTurnState : State
     public override void Enter()
     {
         StartCoroutine(ShowPlayerTurn());
+        if (CardSystemManager._instance.DiscardPile.Count > 0)
+        {
+            CardSystemManager._instance.SendEachCardToPile();
+            
+        }
+        else
+        {
+            return;
+        }
+
     }
 
     public override void Exit()
     {
         CardDeckBlocker.SetActive(true);
+    }
+
+    public override void OnUpdate()
+    {
+
     }
 
     public void NextTurn()
