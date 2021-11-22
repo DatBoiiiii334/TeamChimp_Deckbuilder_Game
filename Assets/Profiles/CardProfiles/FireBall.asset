@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: FireBall
   _description: Deal 2 Damage and give 3 fire ticks
   Image: {fileID: 21300000, guid: d6c6374f19c250942977d9ca5af16fe3, type: 3}
-  _mana: 2
+  _mana: 1
   _attackDamage: 2
   _tickDamage: 2
   _health: 0

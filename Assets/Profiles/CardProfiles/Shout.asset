@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Shout
   _description: You fear your enemy
   Image: {fileID: 0}
-  _mana: 0
+  _mana: 1
   _attackDamage: 0
   _tickDamage: 0
   _health: 0

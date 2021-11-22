@@ -13,18 +13,52 @@ public class CardSystemManager : MonoBehaviour
     public GameObject CardDiscardPilePos;
     public GameObject CardDeckPos;
     public float cardMoveSpeed;
+    bool oby;
+    int vv;
     public int switchValue { get; set; }
 
-    public void AddCardToCardDeck(GameObject _card, Draggable _DragComp)
+
+    public void AddCardToCardDeck(GameObject _card)
     {
-        if (CardController.instance_CardController.CardSpawnPoint.transform.childCount == 0)
-        {
-            _DragComp.parentToReturnTo = CardController.instance_CardController.CardSpawnPoint.transform;
-        }
         CardDeck.Add(_card);
-        switchValue = 3;
-        //_DragComp.parentToReturnTo = CardDeckPos.transform;
+        CardPile.Remove(_card);
+        _card.transform.position = Vector2.Lerp(_card.transform.position, CardDeckPos.transform.position, cardMoveSpeed * Time.deltaTime);
+        _card.GetComponent<Draggable>().parentToReturnTo = CardDeckPos.transform;
     }
+
+    public void NExtCard(){
+        vv += 1;
+        AddCardToCardDeck(CardPilePos.transform.GetChild(vv).gameObject);
+    }
+
+    private void FixedUpdate()
+    {
+        
+        AddCardToCardDeck(CardPilePos.transform.GetChild(0).gameObject);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     public void AddCardToCardPile(GameObject _card, Draggable _DragComp)
     {
@@ -41,43 +75,22 @@ public class CardSystemManager : MonoBehaviour
         switchValue = 1;
     }
 
-    public void SendFromDiscardToPile(GameObject _card, Draggable _DragComp)
+    public void SendFromDiscardToPile(GameObject _card)
     {
         CardPile.Add(_card);
         //if (DiscardPile.Contains(_card)) { DiscardPile.Remove(_card); }
-        _DragComp.parentToReturnTo = CardDiscardPilePos.transform;
+        _card.GetComponent<Draggable>().parentToReturnTo = CardDiscardPilePos.transform;
     }
 
     public void SendEachCardToPile()
     {
-        StartCoroutine(WipeDiscardPile());
+        //StartCoroutine(WipeDiscardPile());
     }
 
-    private void FixedUpdate()
+
+    public void MoveCard(GameObject _card, GameObject destination)
     {
-        MoveCards();
-        // foreach (GameObject usedCard in DiscardPile)
-        // {
-        //     usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardDiscardPilePos.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-        // }
-
-        // foreach (GameObject usedCard in CardPile)
-        // {
-        //     usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardPilePos.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-        // }
-
-        // foreach (GameObject usedCard in CardDeck)
-        // {
-        //     if (CardDeckPos.transform.childCount > 0)
-        //     {
-        //         Vector2 newCardPos = CardDeckPos.transform.GetChild(CardDeckPos.transform.childCount).GetComponent<RectTransform>().position;
-        //         usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardDeckPos.transform.GetChild(CardDeckPos.transform.childCount).GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-        //     }
-        //     else
-        //     {
-        //         usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardDeckPos.transform.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-        //     }
-        // }
+        _card.transform.position = Vector2.Lerp(_card.GetComponent<RectTransform>().position, destination.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
     }
 
     public void MoveCards()
@@ -110,7 +123,10 @@ public class CardSystemManager : MonoBehaviour
                     {
                         usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardDeckPos.transform.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
                     }
+                    //StartCoroutine(SendCardsToDeck());
                 }
+                break;
+            case 4:
                 break;
 
             default:
@@ -118,15 +134,21 @@ public class CardSystemManager : MonoBehaviour
         }
     }
 
-    IEnumerator WipeDiscardPile()
-    {
-        for (int i = 0; i < DiscardPile.Count; i++)
-        {
-            SendFromDiscardToPile(DiscardPile[i], DiscardPile[i].GetComponent<Draggable>());
-        }
-        yield return new WaitForSeconds(0.1f);
-        DiscardPile.Clear();
-    }
+    // IEnumerator WipeDiscardPile()
+    // {
+    //     for (int i = 0; i < DiscardPile.Count; i++)
+    //     {
+    //         SendFromDiscardToPile(DiscardPile[i], DiscardPile[i].GetComponent<Draggable>());
+    //     }
+    //     yield return new WaitForSeconds(0.1f);
+    //     DiscardPile.Clear();
+    // }
+
+    // IEnumerator SendCardsToDeck()
+    // {
+    //     yield return new WaitForSeconds(2f);
+    //     switchValue = 4;
+    // }
 
     private void Awake()
     {

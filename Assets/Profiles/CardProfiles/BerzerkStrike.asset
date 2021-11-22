@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: BerserkStrike
   _description: Deal your missing hp (divded by 2) as damage plus 3
   Image: {fileID: 21300000, guid: 9c21448eb4b890c449f7178e28f8406c, type: 3}
-  _mana: 2
+  _mana: 1
   _attackDamage: 3
   _tickDamage: 0
   _health: 0
