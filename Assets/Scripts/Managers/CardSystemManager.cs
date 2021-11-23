@@ -5,151 +5,79 @@ using UnityEngine;
 public class CardSystemManager : MonoBehaviour
 {
     public static CardSystemManager _instance;
-    public List<GameObject> CardPile = new List<GameObject>();
-    public List<GameObject> DiscardPile = new List<GameObject>();
-    public List<GameObject> CardDeck = new List<GameObject>();
-    public enum cardsystem { MoveToCardPile, MoveToDiscardPile, MoveToCardDeck };
+    public List<GameObject> CardsInScene = new List<GameObject>();
+
     public GameObject CardPilePos;
     public GameObject CardDiscardPilePos;
     public GameObject CardDeckPos;
     public float cardMoveSpeed;
-    bool oby;
-    int vv;
-    public int switchValue { get; set; }
 
-
-    public void AddCardToCardDeck(GameObject _card)
+    public void MoveToPile(CardTemplate usedCard, float time)
     {
-        CardDeck.Add(_card);
-        CardPile.Remove(_card);
-        _card.transform.position = Vector2.Lerp(_card.transform.position, CardDeckPos.transform.position, cardMoveSpeed * Time.deltaTime);
-        _card.GetComponent<Draggable>().parentToReturnTo = CardDeckPos.transform;
+        StartCoroutine(usedCard.LerpPosition(CardPilePos, time));
+    }
+    public void MoveToDeck(CardTemplate usedCard, float time)
+    {
+        StartCoroutine(usedCard.LerpPosition(CardDeckPos, time));
+    }
+    public void MoveToDiscard(CardTemplate usedCard, float time)
+    {
+        StartCoroutine(usedCard.LerpPosition(CardDiscardPilePos, time));
     }
 
-    public void NExtCard(){
-        vv += 1;
-        AddCardToCardDeck(CardPilePos.transform.GetChild(vv).gameObject);
-    }
-
-    private void FixedUpdate()
-    {
-        
-        AddCardToCardDeck(CardPilePos.transform.GetChild(0).gameObject);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    public void AddCardToCardPile(GameObject _card, Draggable _DragComp)
-    {
-        CardPile.Add(_card);
-        _DragComp.parentToReturnTo = CardDiscardPilePos.transform;
-        switchValue = 2;
-    }
-
-    public void AddCardToDiscardPile(GameObject _card, Draggable _DragComp)
-    {
-        DiscardPile.Add(_card);
-        if (CardPile.Contains(_card)) { CardPile.Remove(_card); }
-        _DragComp.parentToReturnTo = CardDiscardPilePos.transform;
-        switchValue = 1;
-    }
-
-    public void SendFromDiscardToPile(GameObject _card)
-    {
-        CardPile.Add(_card);
-        //if (DiscardPile.Contains(_card)) { DiscardPile.Remove(_card); }
-        _card.GetComponent<Draggable>().parentToReturnTo = CardDiscardPilePos.transform;
-    }
-
-    public void SendEachCardToPile()
-    {
-        //StartCoroutine(WipeDiscardPile());
-    }
-
-
-    public void MoveCard(GameObject _card, GameObject destination)
-    {
-        _card.transform.position = Vector2.Lerp(_card.GetComponent<RectTransform>().position, destination.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-    }
-
-    public void MoveCards()
-    {
-        switch (switchValue)
-        {
-            case 1:
-                foreach (GameObject usedCard in DiscardPile)
-                {
-                    usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardDiscardPilePos.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-                }
-                break;
-
-            case 2:
-                foreach (GameObject usedCard in CardPile)
-                {
-                    usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardPilePos.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-                }
-                break;
-
-            case 3:
-                foreach (GameObject usedCard in CardDeck)
-                {
-                    if (CardDeckPos.transform.childCount > 0)
-                    {
-                        Vector2 newCardPos = CardDeckPos.transform.GetChild(CardDeckPos.transform.childCount).GetComponent<RectTransform>().position;
-                        usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardDeckPos.transform.GetChild(CardDeckPos.transform.childCount).GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-                    }
-                    else
-                    {
-                        usedCard.transform.position = Vector2.Lerp(usedCard.GetComponent<RectTransform>().position, CardDeckPos.transform.GetComponent<RectTransform>().position, cardMoveSpeed * Time.deltaTime);
-                    }
-                    //StartCoroutine(SendCardsToDeck());
-                }
-                break;
-            case 4:
-                break;
-
-            default:
-                break;
+    private void FixedUpdate() {
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            print("Aplha1");
+            foreach(GameObject _Card in CardsInScene){
+               StartCoroutine(MoveCardsToPile(_Card.GetComponent<CardTemplate>()));
+            }
         }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            print("Aplha2");
+            foreach(GameObject _Card in CardsInScene){
+               StartCoroutine(MoveCardsToDeck(_Card.GetComponent<CardTemplate>()));
+            }
+        }   
+
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            print("Aplha3");
+            foreach(GameObject _Card in CardsInScene){
+               StartCoroutine(MoveCardsToDiscard(_Card.GetComponent<CardTemplate>()));
+            }
+        }        
     }
 
-    // IEnumerator WipeDiscardPile()
+    IEnumerator MoveCardsToPile(CardTemplate usedCard){
+        MoveToPile(usedCard, 0.5f);
+        yield return new WaitForSeconds(0.1f);
+    }
+
+    IEnumerator MoveCardsToDeck(CardTemplate usedCard){
+        MoveToDeck(usedCard, 0.5f);
+        yield return new WaitForSeconds(0.1f);
+    }
+
+    IEnumerator MoveCardsToDiscard(CardTemplate usedCard){
+        MoveToDiscard(usedCard, 0.5f);
+        yield return new WaitForSeconds(0.1f);
+    }
+
+
+    // public void AddCardToCardDeck(GameObject _card)
     // {
-    //     for (int i = 0; i < DiscardPile.Count; i++)
-    //     {
-    //         SendFromDiscardToPile(DiscardPile[i], DiscardPile[i].GetComponent<Draggable>());
-    //     }
-    //     yield return new WaitForSeconds(0.1f);
-    //     DiscardPile.Clear();
+    //     CardDeck.Add(_card);
+    //     CardPile.Remove(_card);
+    //     _card.transform.position = Vector2.Lerp(_card.transform.position, CardDeckPos.transform.position, cardMoveSpeed * Time.deltaTime);
+    //     _card.GetComponent<Draggable>().parentToReturnTo = CardDeckPos.transform;
     // }
 
-    // IEnumerator SendCardsToDeck()
+    // public void AddCardToCardPile(GameObject _card, Draggable _DragComp)
     // {
-    //     yield return new WaitForSeconds(2f);
-    //     switchValue = 4;
+    //     CardPile.Add(_card);
+    //     _DragComp.parentToReturnTo = CardDiscardPilePos.transform;
+    //     switchValue = 2;
     // }
-
     private void Awake()
     {
         if (_instance != null)

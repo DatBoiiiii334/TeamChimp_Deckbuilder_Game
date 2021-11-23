@@ -43,7 +43,7 @@ public class CardController : MonoBehaviour
         index = Random.Range(0, playerCardProfileDictionary.Count);
         myCard = Instantiate(CardPrefab, CardSpawnPoint.transform);
         myCard.GetComponent<CardTemplate>().card = playerCardProfileDictionary[AllCardProfiles[index].name];
-        CardSystemManager._instance.AddCardToCardPile(myCard, myCard.GetComponent<Draggable>());
+        CardSystemManager._instance.CardsInScene.Add(myCard);
     }
 
     private void Awake()

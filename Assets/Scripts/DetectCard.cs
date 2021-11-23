@@ -7,7 +7,7 @@ public class DetectCard : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<Draggable>()){
             print("Detected");
-            CardSystemManager._instance.NExtCard();
+            //CardSystemManager._instance.NExtCard();
         }
     }
 }
