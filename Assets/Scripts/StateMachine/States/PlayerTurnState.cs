@@ -9,7 +9,6 @@ public class PlayerTurnState : State
     public override void Enter()
     {
         StartCoroutine(ShowPlayerTurn());
-
     }
 
     public override void Exit()
@@ -33,6 +32,7 @@ public class PlayerTurnState : State
         CardDeckBlocker.SetActive(false);
         UIManager._instanceUI.UIBanner.SetActive(false);
         StopAllCoroutines();
+        StartCoroutine(WaitForCards());
     }
 
     IEnumerator ShowPlayerTurn()
@@ -42,7 +42,15 @@ public class PlayerTurnState : State
         UIManager._instanceUI.Title.text = "Player Turn";
         UIManager._instanceUI.undertitle.text = PlayerTurnAmount + "th turn";
         UIManager._instanceUI.BannerAnimator.SetTrigger("ActivateBanner");
+        
         yield return new WaitForSeconds(2.4f);
         GivePlayerTurn();
+    }
+
+    IEnumerator WaitForCards(){
+        CardSystemManager._instance.StartCoroutine(CardSystemManager._instance.MoveCardsToPile());
+        yield return new WaitForSeconds(3f);
+        CardSystemManager._instance.StartCoroutine(CardSystemManager._instance.MoveCardsToDeck());
+        StopCoroutine(WaitForCards());
     }
 }

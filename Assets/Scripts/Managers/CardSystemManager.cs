@@ -11,6 +11,7 @@ public class CardSystemManager : MonoBehaviour
     public GameObject CardDiscardPilePos;
     public GameObject CardDeckPos;
     public float cardMoveSpeed;
+    private float timer;
 
     public void MoveToPile(CardTemplate usedCard, float time)
     {
@@ -25,42 +26,67 @@ public class CardSystemManager : MonoBehaviour
         StartCoroutine(usedCard.LerpPosition(CardDiscardPilePos, time));
     }
 
-    private void FixedUpdate() {
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
+    private void FixedUpdate()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             print("Aplha1");
-            foreach(GameObject _Card in CardsInScene){
-               StartCoroutine(MoveCardsToPile(_Card.GetComponent<CardTemplate>()));
-            }
+            StartCoroutine(MoveCardsToPile());
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             print("Aplha2");
-            foreach(GameObject _Card in CardsInScene){
-               StartCoroutine(MoveCardsToDeck(_Card.GetComponent<CardTemplate>()));
-            }
-        }   
+            StartCoroutine(MoveCardsToDeck());
+        }
 
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
             print("Aplha3");
-            foreach(GameObject _Card in CardsInScene){
-               StartCoroutine(MoveCardsToDiscard(_Card.GetComponent<CardTemplate>()));
-            }
-        }        
+            StartCoroutine(MoveCardsToDiscard());
+        }
     }
 
-    IEnumerator MoveCardsToPile(CardTemplate usedCard){
-        MoveToPile(usedCard, 0.5f);
+    public IEnumerator MoveCardsToPile()
+    {
+        // MoveToPile(usedCard, 0.5f);
+        MoveToPile(CardsInScene[0].GetComponent<CardTemplate>(), 0.3f);
         yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[1].GetComponent<CardTemplate>(), 0.3f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[2].GetComponent<CardTemplate>(), 0.3f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[3].GetComponent<CardTemplate>(), 0.3f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[4].GetComponent<CardTemplate>(), 0.3f);
+        //yield return new WaitForSeconds(0.1f);
     }
 
-    IEnumerator MoveCardsToDeck(CardTemplate usedCard){
-        MoveToDeck(usedCard, 0.5f);
+    public IEnumerator MoveCardsToDeck()
+    {
+        MoveToDeck(CardsInScene[0].GetComponent<CardTemplate>(), 0.3f);
         yield return new WaitForSeconds(0.1f);
+        MoveToDeck(CardsInScene[1].GetComponent<CardTemplate>(), 0.3f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToDeck(CardsInScene[2].GetComponent<CardTemplate>(), 0.3f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToDeck(CardsInScene[3].GetComponent<CardTemplate>(), 0.3f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToDeck(CardsInScene[4].GetComponent<CardTemplate>(), 0.3f);
     }
 
-    IEnumerator MoveCardsToDiscard(CardTemplate usedCard){
-        MoveToDiscard(usedCard, 0.5f);
+    public IEnumerator MoveCardsToDiscard()
+    {
+        MoveToPile(CardsInScene[0].GetComponent<CardTemplate>(), 0.5f);
         yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[1].GetComponent<CardTemplate>(), 0.5f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[2].GetComponent<CardTemplate>(), 0.5f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[3].GetComponent<CardTemplate>(), 0.5f);
+        yield return new WaitForSeconds(0.1f);
+        MoveToPile(CardsInScene[4].GetComponent<CardTemplate>(), 0.5f);
     }
 
 

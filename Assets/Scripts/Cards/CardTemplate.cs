@@ -45,7 +45,6 @@ public class CardTemplate : MonoBehaviour
 
     public IEnumerator LerpPosition(GameObject targetPosition, float duration)
     {
-        print("Moving");
         float time = 0;
         Vector2 startPosition = transform.position;
 
