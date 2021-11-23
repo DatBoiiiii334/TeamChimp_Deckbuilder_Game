@@ -27,6 +27,15 @@ public class CardTemplate : MonoBehaviour
         //_card = card.cardType;
     }
 
+    // public void TypeAssigner(){
+    //     switch(Card._card.cardType){
+    //         case DAMAGE:
+    //         break;
+
+
+    //     }
+    // }
+
     public void ScriptAdder()
     {
         foreach (BaseEffect ability in card.Effects)

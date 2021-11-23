@@ -9,12 +9,16 @@ public class PlayerTurnState : State
     public override void Enter()
     {
         StartCoroutine(ShowPlayerTurn());
+
     }
 
     public override void Exit()
     {
         CardDeckBlocker.SetActive(true);
     }
+
+    public override void OnUpdate()
+    {}
 
     public void NextTurn()
     {

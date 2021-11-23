@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Use shield
   _description: You shield yourself against the next eney attack
   Image: {fileID: 21300000, guid: b01c29a3e66d44b46baf315997d26be0, type: 3}
-  _mana: 2
+  _mana: 1
   _attackDamage: 0
   _tickDamage: 0
   _health: 0

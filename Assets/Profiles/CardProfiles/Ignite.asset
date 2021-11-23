@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Ignite
   _description: Deal 3 damage per enemy tick
   Image: {fileID: 21300000, guid: 5fe01e81d03f21648b4073ccd54a6129, type: 3}
-  _mana: 2
+  _mana: 1
   _attackDamage: 0
   _tickDamage: 3
   _health: 0

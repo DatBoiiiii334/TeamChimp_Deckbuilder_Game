@@ -17,12 +17,13 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         if (DroppedCard.card.Mana > Player._player.Mana) { return; }
 
         DroppedCardDragComponent.parentToReturnTo = this.transform;
-        CommidCardAction(DroppedCard);
+        CommidCardAction(DroppedCard, DroppedCardDragComponent);
     }
 
-    public void CommidCardAction(CardTemplate _droppedCard)
+    public void CommidCardAction(CardTemplate _droppedCard, Draggable _carDragComponent)
     {
         _droppedCard.ExecuteAction();
-        Destroy(_droppedCard.gameObject);
+        //CardSystemManager._instance.AddCardToDiscardPile(_droppedCard.gameObject, _carDragComponent);
+       // Destroy(_droppedCard.gameObject);
     }
 }

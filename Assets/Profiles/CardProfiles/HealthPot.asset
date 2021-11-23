@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: HealthPot
   _description: This sweet red nectar replenishes your health in no time
   Image: {fileID: 21300000, guid: 5db42434e55189348aa5977ca37e8c9d, type: 3}
-  _mana: 2
+  _mana: 1
   _attackDamage: 0
   _tickDamage: 0
   _health: 10

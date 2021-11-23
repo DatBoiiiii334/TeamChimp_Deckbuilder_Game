@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Concusion Strike
   _description: Deal 15 rawDamage
   Image: {fileID: 21300000, guid: 550780f4094034f4a9cc60a023ff3a68, type: 3}
-  _mana: 4
+  _mana: 1
   _attackDamage: 15
   _tickDamage: 0
   _health: 0
