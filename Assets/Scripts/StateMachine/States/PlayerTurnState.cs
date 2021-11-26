@@ -8,12 +8,19 @@ public class PlayerTurnState : State
 
     public override void Enter()
     {
-        StartCoroutine(ShowPlayerTurn());
+        if(Player._player.Health <= 0){
+            StopAllCoroutines();
+            myFSM.SetCurrentState(typeof(PlayerLoseState));
+        }else{
+            GameManager._instance.FightScene.SetActive(true);
+            StartCoroutine(ShowPlayerTurn());
+        }
     }
 
     public override void Exit()
     {
         CardDeckBlocker.SetActive(true);
+        StartCoroutine(OnExit());
     }
 
     public override void OnUpdate()
@@ -35,6 +42,12 @@ public class PlayerTurnState : State
         StartCoroutine(WaitForCards());
     }
 
+    IEnumerator OnExit(){
+        GameManager._instance.TransitionScreenAnim.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(1f);
+        GameManager._instance.FightScene.SetActive(false);
+    }
+
     IEnumerator ShowPlayerTurn()
     {
         PlayerTurnAmount += 1;
@@ -49,7 +62,7 @@ public class PlayerTurnState : State
 
     IEnumerator WaitForCards(){
         CardSystemManager._instance.StartCoroutine(CardSystemManager._instance.MoveCardsToPile());
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         CardSystemManager._instance.StartCoroutine(CardSystemManager._instance.MoveCardsToDeck());
         StopCoroutine(WaitForCards());
     }

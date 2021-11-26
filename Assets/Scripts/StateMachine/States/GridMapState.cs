@@ -16,10 +16,4 @@ public class GridMapState: State{
         //Destroy GridMap assets
     }
 
-    public override void OnUpdate()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            myFSM.SetCurrentState(typeof(FightState));
-        }
-    }
 }

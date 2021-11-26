@@ -10,7 +10,11 @@ public class EnemyTurnState : State
     public override void Enter()
     {
         CardDeckBlocker.SetActive(true);
-        StartCoroutine(ShowEnemyTurn());
+        if(EnemyBody._instanceEnemyBody.Health <= 0){
+            myFSM.SetCurrentState(typeof(PlayerWinState));
+        }else{
+            StartCoroutine(ShowEnemyTurn());
+        }
     }
 
     public override void Exit()

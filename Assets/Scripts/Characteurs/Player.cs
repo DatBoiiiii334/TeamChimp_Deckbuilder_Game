@@ -27,6 +27,7 @@ public class Player : Humanoid
     {
         anim.Play("DEV_Idle");
         hpSlider.maxValue = maxHealth;
+        NameField.text = Name;
         UpdatePlayerUI();
     }
 
@@ -44,5 +45,12 @@ public class Player : Humanoid
         ShieldField.text = Shield.ToString();
         //ManaField.text = Mana.ToString();
         hpSlider.value = Health;
+    }
+
+    public void ResetPlayerStats(){
+        Health = maxHealth;
+        Shield = maxShield;
+        GameManager._instance.GiveHand();
+        UpdatePlayerUI();
     }
 }

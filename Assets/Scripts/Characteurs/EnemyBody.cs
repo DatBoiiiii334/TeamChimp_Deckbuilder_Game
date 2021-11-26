@@ -86,4 +86,11 @@ public class EnemyBody : MonoBehaviour
     {
         NextEnemyAttack.text = nameAttack;
     }
+
+    public void ResetEnemy(){
+        Health = _core.maxHealth;
+        Shield = _core.maxShield;
+        EnemyTurn();
+        UpdateEnemyUI();
+    }
 }

@@ -5,11 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    public GameObject CardSpawn, winScreen, LoseScreen;
-    public int forEnemyTickDamage;
+    public GameObject CardSpawn, winScreen, LoseScreen, FightScene, ShopScene;
+    public int forEnemyTickDamage, amountCardsSpawn;
     FSM myFSM;
 
     private CardController _cardController;
+    public Animator TransitionScreenAnim, ShopAnim;
 
     public void Start()
     {
@@ -18,7 +19,26 @@ public class GameManager : MonoBehaviour
         foreach(State state in myStatearray){
             myFSM.Add(state.GetType(),state);
         }
-        myFSM.SetCurrentState(typeof(PlayerTurnState));
+        myFSM.SetCurrentState(typeof(MainMenuState));
+    }
+
+    private void Update() {
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            myFSM.SetCurrentState(typeof(PlayerTurnState));
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            myFSM.SetCurrentState(typeof(ShopState));
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            myFSM.SetCurrentState(typeof(PlayerLoseState));
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha4)){
+            myFSM.SetCurrentState(typeof(MainMenuState));
+        }
     }
 
     public void isEnemyDead(){
@@ -58,12 +78,11 @@ public class GameManager : MonoBehaviour
     public void GiveHand()
     {
         RemoveCards(CardSpawn.transform);
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < amountCardsSpawn; i++)
         {
             _cardController.BuyCard();
         }
     }
-
 
     public void RemoveCards(Transform cardSpawn)
     {
@@ -72,7 +91,7 @@ public class GameManager : MonoBehaviour
         {
             children.Add(gameObject);
         }
-        if (children.Count >= 0)
+        if (children.Count > 0)
         {
             foreach (Transform child in cardSpawn)
             {

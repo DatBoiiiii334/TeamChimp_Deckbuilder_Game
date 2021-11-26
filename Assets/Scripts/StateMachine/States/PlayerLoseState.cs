@@ -1,26 +1,39 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerLoseState: State{
+    public GameObject LoseScreen;
 
     public override void Enter()
     {
-        print("PlayerLoseState");
-        //Instantiate Game Level
-
-        //Instantiate Player instance
-        //Instantiate Enemy instantce
+        StartCoroutine(WaitEnter());
     }
 
     public override void Exit()
     {
-        //Destroy Player instance
-        //Destroy Enemy instance
+        StartCoroutine(WaitExit());
     }
 
-    public override void OnUpdate()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            //myFSM.SetCurrentState(typeof(GridMapState));
-        }
+    private IEnumerator WaitEnter(){
+        yield return new WaitForSeconds(2f);
+        GameManager._instance.FightScene.SetActive(false);
+        LoseScreen.SetActive(true);
+    }
+
+    private IEnumerator WaitExit(){
+        GameManager._instance.TransitionScreenAnim.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(2f);
+        LoseScreen.SetActive(false);
+    }
+
+    public void GoToMainMenu(){
+        myFSM.SetCurrentState(typeof(MainMenuState));
+    }
+    
+    public void Reset() {
+        print("Reset");
+        Player._player.ResetPlayerStats();
+        EnemyBody._instanceEnemyBody.ResetEnemy();
+        myFSM.SetCurrentState(typeof(PlayerEnterState));
     }
 }
