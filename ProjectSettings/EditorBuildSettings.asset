@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Hasan/Scenes/sc_HasanArtPlaceholder.unity
     guid: 967940444dd0c4241a821baa651d1717
+  - enabled: 1
+    path: Assets/Hasan/Scenes/sc_ArtTest.unity
+    guid: 2e323434a285a9d4cae671ae8e194fa2
   m_configObjects: {}
