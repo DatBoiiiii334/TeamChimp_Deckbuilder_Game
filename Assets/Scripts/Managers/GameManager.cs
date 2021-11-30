@@ -22,25 +22,6 @@ public class GameManager : MonoBehaviour
         myFSM.SetCurrentState(typeof(MainMenuState));
     }
 
-    private void Update() {
-
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-            myFSM.SetCurrentState(typeof(PlayerTurnState));
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
-            myFSM.SetCurrentState(typeof(ShopState));
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
-            myFSM.SetCurrentState(typeof(PlayerLoseState));
-        }
-
-        if(Input.GetKeyDown(KeyCode.Alpha4)){
-            myFSM.SetCurrentState(typeof(MainMenuState));
-        }
-    }
-
     public void isEnemyDead(){
         if (EnemyBody._instanceEnemyBody.Health <= 0)
         {
@@ -77,11 +58,11 @@ public class GameManager : MonoBehaviour
 
     public void GiveHand()
     {
-        RemoveCards(CardSpawn.transform);
-        for (int i = 0; i < amountCardsSpawn; i++)
-        {
-            _cardController.BuyCard();
-        }
+        // RemoveCards(CardSpawn.transform);
+        // for (int i = 0; i < amountCardsSpawn; i++)
+        // {
+        //     _cardController.BuyCard();
+        // }
     }
 
     public void RemoveCards(Transform cardSpawn)

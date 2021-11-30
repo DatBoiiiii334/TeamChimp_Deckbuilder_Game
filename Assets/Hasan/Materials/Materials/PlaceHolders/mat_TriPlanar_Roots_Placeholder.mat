@@ -140,7 +140,7 @@ Material:
     - _GradientOriginBottom: 8.29
     - _GradientOriginTop: 0
     - _LightStrength: 0.5
-    - _MaskStrengthBottom: 0.19
+    - _MaskStrengthBottom: 0.43
     - _MaskStrengthTop: 0
     - _Metallic: 0
     - _OcclusionStrength: 1

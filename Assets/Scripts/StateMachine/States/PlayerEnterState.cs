@@ -13,8 +13,13 @@ public class PlayerEnterState : State
     private IEnumerator WaitToEnter()
     {
         GameManager._instance.FightScene.SetActive(true);
-        yield return new WaitForSeconds(3f);
 
+        // for(int i = 0; i < 2; i++){
+        CardController.instance_CardController.BuyCard();
+        // }
+        yield return new WaitForSeconds(3f);
+        CardSystemManager._instance._MoveCardsToPile();
+        yield return new WaitForSeconds(2f);
         myFSM.SetCurrentState(typeof(PlayerTurnState));
     }
 }

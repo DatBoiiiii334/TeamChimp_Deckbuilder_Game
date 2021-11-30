@@ -15,59 +15,55 @@ public class CardSystemManager : MonoBehaviour
     {
         StartCoroutine(usedCard.LerpPosition(CardPilePos, time));
     }
+
     public void MoveToDeck(CardTemplate usedCard, float time)
     {
         StartCoroutine(usedCard.LerpPosition(CardDeckPos, time));
     }
+
     public void MoveToDiscard(CardTemplate usedCard, float time)
     {
         StartCoroutine(usedCard.LerpPosition(CardDiscardPilePos, time));
     }
 
-    private void FixedUpdate()
+    public void _MoveCardsToPile()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1))
-        // {
-        //     print("Aplha1");
-        //     StartCoroutine(MoveCardsToPile());
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Alpha2))
-        // {
-        //     print("Aplha2");
-        //     StartCoroutine(MoveCardsToDeck());
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Alpha3))
-        // {
-        //     print("Aplha3");
-        //     StartCoroutine(MoveCardsToDiscard());
-        // }
+        StartCoroutine(MoveCardsToPile());
     }
 
     public IEnumerator MoveCardsToPile()
     {
+        foreach (Transform _card in GameManager._instance.CardSpawn.transform)
+        {
+            MoveToPile(_card.GetComponent<CardTemplate>(), 0.3f);
+            yield return new WaitForSeconds(0.1f);
+        }
+
         // foreach (GameObject _card in CardsInScene)
         // {
         //     MoveToPile(_card.GetComponent<CardTemplate>(), 0.3f);
         //     yield return new WaitForSeconds(0.1f);
-        //     // for loop check if 0
         // }
-        
-        for(int i = 0; i < 5; i++){
-            //MoveToPile(CardController.instance_CardController.CardSpawnPoint.transform.GetChild(i).GetComponent<CardTemplate>(), 0.3f);
-            //print("Amount: "+ GameManager._instance.amountCardsSpawn);
-            yield return new WaitForSeconds(0.1f);
-        }
     }
 
     public IEnumerator MoveCardsToDeck()
     {
-        foreach (GameObject _card in CardsInScene)
+        for (int i = 0; i < 5; i++)
         {
-            MoveToDeck(_card.GetComponent<CardTemplate>(), 0.3f);
-            yield return new WaitForSeconds(0.1f);
+            int value;
+            value = Random.Range(0, CardPilePos.transform.childCount);
+            if (CardPilePos.transform.childCount > 0)
+            {
+                MoveToDeck(CardPilePos.transform.GetChild(i).GetComponent<CardTemplate>(), 0.3f);
+                yield return new WaitForSeconds(0.1f);
+            }
         }
+
+        // foreach (GameObject _card in CardsInScene)
+        // {
+        //     MoveToDeck(_card.GetComponent<CardTemplate>(), 0.3f);
+        //     yield return new WaitForSeconds(0.1f);
+        // }
     }
 
     public IEnumerator MoveCardsToDiscard()

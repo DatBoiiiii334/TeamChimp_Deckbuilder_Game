@@ -20,11 +20,8 @@ public class PlayerTurnState : State
     public override void Exit()
     {
         CardDeckBlocker.SetActive(true);
-        StartCoroutine(OnExit());
+        //StartCoroutine(OnExit());
     }
-
-    public override void OnUpdate()
-    {}
 
     public void NextTurn()
     {
@@ -33,7 +30,7 @@ public class PlayerTurnState : State
 
     public void GivePlayerTurn()
     {
-        GameManager._instance.GiveHand();
+        //GameManager._instance.GiveHand();
         Player._player.Mana = 5;
         Player._player.UpdatePlayerUI();
         CardDeckBlocker.SetActive(false);
@@ -61,7 +58,7 @@ public class PlayerTurnState : State
     }
 
     IEnumerator WaitForCards(){
-        CardSystemManager._instance.StartCoroutine(CardSystemManager._instance.MoveCardsToPile());
+        //CardSystemManager._instance.StartCoroutine(CardSystemManager._instance.MoveCardsToPile());
         yield return new WaitForSeconds(2f);
         CardSystemManager._instance.StartCoroutine(CardSystemManager._instance.MoveCardsToDeck());
         StopCoroutine(WaitForCards());

@@ -27,7 +27,8 @@ public class DisplayCard : MonoBehaviour
     public void SelectProfile()
     {
         print(card.Name + " Was selected");
-        CardController.instance_CardController.AllCardProfiles.Add(card);
+        // CardController.instance_CardController.AllCardProfiles.Add(card);
+        CardController.instance_CardController.PlayerCards.Add(card, 1);
         CardPicker.instance_CardPicker.AllNewCardProfiles.Remove(card);
         CardPicker.instance_CardPicker.CloseNewCardsWindow();
         Destroy(gameObject);

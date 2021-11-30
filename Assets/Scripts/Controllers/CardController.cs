@@ -8,42 +8,38 @@ public class CardController : MonoBehaviour
     public GameObject CardPrefab, CardSpawnPoint;
     public int intToSave;
     public string stringToSave;
-    public List<Card> AllCardProfiles;
+    public List<Card> _PlayerCards;
+    public Dictionary<Card, int> PlayerCards = new Dictionary<Card, int>();
 
-    [SerializeField]
-    public Dictionary<string, Card> playerCardProfileDictionary = new Dictionary<string, Card>();
-
-    public void Start()
-    {
-        for (int i = 0; i < AllCardProfiles.Count; i++)
-        {
-            playerCardProfileDictionary.Add(AllCardProfiles[i].name, AllCardProfiles[i]);
+    public void OGProfilesToDictioray(){
+        foreach(Card profile in _PlayerCards){
+            PlayerCards.Add(profile, 1);
         }
     }
 
-    public void SpawnCard()
-    {
-        for (int i = 0; i < AllCardProfiles.Count; i++)
-        {
-            GameObject myCard;
-            myCard = Instantiate(CardPrefab, CardSpawnPoint.transform);
-            myCard.GetComponent<CardTemplate>().card = AllCardProfiles[i];
+    public void ProfilesToDictioray(){
+        foreach(Card profile in _PlayerCards){
+            PlayerCards.Add(profile, 2);
         }
     }
 
     public void BuyCard()
     {
-        int index;
-        //int cardId = playerCardProfileDictionary.ElementAt(index).Key;
-        //int cardObject = playerCardProfileDictionary.ElementAt(index).Value;
-        GameObject myCard;
-        //randomvalue = Random.Range(0, AllCardProfiles.Count);
-        //myCard = Instantiate(CardPrefab, CardSpawnPoint.transform);
-        //myCard.GetComponent<CardTemplate>().card = AllCardProfiles[randomvalue];
-        index = Random.Range(0, playerCardProfileDictionary.Count);
-        myCard = Instantiate(CardPrefab, CardSpawnPoint.transform);
-        myCard.GetComponent<CardTemplate>().card = playerCardProfileDictionary[AllCardProfiles[index].name];
-        CardSystemManager._instance.CardsInScene.Add(myCard);
+        foreach (Card _card in PlayerCards.Keys)
+        {
+            for (int i = 0; i < PlayerCards.Values.Count; i++)
+            {
+                GameObject myCard;
+                myCard = Instantiate(CardPrefab, CardSpawnPoint.transform);
+                myCard.GetComponent<CardTemplate>().card = _card;
+            }
+        }
+        // int index;
+
+        // index = Random.Range(0, playerCardProfileDictionary.Count);
+        // myCard = Instantiate(CardPrefab, CardSpawnPoint.transform);
+        // myCard.GetComponent<CardTemplate>().card = playerCardProfileDictionary[AllCardProfiles[index].name];
+        // CardSystemManager._instance.CardsInScene.Add(myCard);
     }
 
     private void Awake()
@@ -56,7 +52,7 @@ public class CardController : MonoBehaviour
         {
             instance_CardController = this;
         }
-    }    
+    }
 }
 
 
