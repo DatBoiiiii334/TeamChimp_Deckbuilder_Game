@@ -6,42 +6,58 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
     public GameObject CardSpawn, winScreen, LoseScreen;
-    public bool PlayerTurn;
+    public int forEnemyTickDamage;
+    FSM myFSM;
+
     private CardController _cardController;
-    //private Player _player;
-    //private Player _player;
 
     public void Start()
     {
-        PlayerTurn = true;
-        _cardController = GetComponent<CardController>();
-        GiveHand();
+        myFSM = GetComponent<FSM>();
+        State[] myStatearray = GetComponents<State>();
+        foreach(State state in myStatearray){
+            myFSM.Add(state.GetType(),state);
+        }
+        myFSM.SetCurrentState(typeof(PlayerTurnState));
     }
 
-
-    public void EndPlayerTurn()
-    {
-        if (Enemy._instance.Health <= 0)
+    public void isEnemyDead(){
+        if (EnemyBody._instanceEnemyBody.Health <= 0)
         {
             winScreen.SetActive(true);
             CardPicker.instance_CardPicker.OpenNewCardsWindow();
         }
-        else
+    }
+
+    public void DamageEnemy(int damage){
+        if (damage >= EnemyBody._instanceEnemyBody.Shield)
         {
-            PlayerTurn = false;
-            GiveHand();
+            int var;
+            int kaartDamage = damage;
+            Player._player.anim.SetTrigger("DoAttackAnim");
+            var = kaartDamage -= EnemyBody._instanceEnemyBody.Shield;
+            EnemyBody._instanceEnemyBody.Shield = 0;
+            EnemyBody._instanceEnemyBody.Health -= var;
+            EnemyBody._instanceEnemyBody.lastDamageDealtTo = var;
+            Debug.Log("damage to enemy: " + var);
+        }
+        else if (damage < EnemyBody._instanceEnemyBody.Shield)
+        {
+            Player._player.anim.SetTrigger("DoAttackAnim");
+            EnemyBody._instanceEnemyBody.Shield -= damage;
+            EnemyBody._instanceEnemyBody.lastDamageDealtTo = damage;
+        }
+    }
+
+    public void TickDmg(int damage){
+        if(TickManager._tickManager.forEnemyTicks > 0){
+            TickManager._tickManager.ApplyTickToEnemy(damage);
         }
     }
 
     public void GiveHand()
     {
-        //Remove old Cards 
         RemoveCards(CardSpawn.transform);
-
-        //Give Mana to Player
-        Player._player.Mana = 5;
-
-        //Add 5 new random cards
         for (int i = 0; i < 5; i++)
         {
             _cardController.BuyCard();
@@ -72,5 +88,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         _instance = this;
+        _cardController = GetComponent<CardController>();
     }
 }

@@ -20,6 +20,7 @@ public class CardDeck : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         //Debug.Log(eventData.pointerDrag.name + "was dropped on " + gameObject.name);
 
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
+        //DragMe = eventData.pointerDrag.GetComponent<DragMe>();
         //Card d = GetComponent<Card>();
 
         if(d != null){
