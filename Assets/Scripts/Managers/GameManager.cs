@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public int forEnemyTickDamage, amountCardsSpawn;
     FSM myFSM;
 
-    private CardController _cardController;
     public Animator TransitionScreenAnim, ShopAnim;
 
     public void Start()
@@ -58,11 +57,11 @@ public class GameManager : MonoBehaviour
 
     public void GiveHand()
     {
-        // RemoveCards(CardSpawn.transform);
-        // for (int i = 0; i < amountCardsSpawn; i++)
-        // {
-        //     _cardController.BuyCard();
-        // }
+        RemoveCards(CardSpawn.transform);
+        for (int i = 0; i < amountCardsSpawn; i++)
+        {
+            CardCreator._instance.SpawnCardList();
+        }
     }
 
     public void RemoveCards(Transform cardSpawn)
@@ -88,6 +87,5 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         _instance = this;
-        _cardController = GetComponent<CardController>();
     }
 }

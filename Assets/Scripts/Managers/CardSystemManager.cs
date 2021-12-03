@@ -7,72 +7,108 @@ public class CardSystemManager : MonoBehaviour
     public static CardSystemManager _instance;
     public List<GameObject> CardsInScene = new List<GameObject>();
 
-    public GameObject CardPilePos, CardDiscardPilePos, CardDeckPos;
+    public GameObject CardPilePos, CardDiscardPilePos, CardDeckPos, CardSpawnPoint;
+    public int AmountCardsInPLayerHand;
     public float cardMoveSpeed;
     private float timer;
 
-    public void MoveToPile(CardTemplate usedCard, float time)
+    public void _MoveCardsSpawnedCards()
     {
-        StartCoroutine(usedCard.LerpPosition(CardPilePos, time));
+        StartCoroutine(MoveCards(CardPilePos.transform, CardSpawnPoint));
     }
 
-    public void MoveToDeck(CardTemplate usedCard, float time)
+    public void _MoveCardsToDiscard(Transform _card)
     {
-        StartCoroutine(usedCard.LerpPosition(CardDeckPos, time));
+        StartCoroutine(MoveToDiscard(_card));
     }
 
-    public void MoveToDiscard(CardTemplate usedCard, float time)
+    public void _MoveCardsToPile(Transform _card)
     {
-        StartCoroutine(usedCard.LerpPosition(CardDiscardPilePos, time));
+        StartCoroutine(MoveCardsToPile(_card));
     }
 
-    public void _MoveCardsToPile()
+    public void _MoveCardsToDeck()
     {
-        StartCoroutine(MoveCardsToPile());
+        StartCoroutine(MoveToDeck());
     }
 
-    public IEnumerator MoveCardsToPile()
+    public void ResetCards()
     {
-        foreach (Transform _card in GameManager._instance.CardSpawn.transform)
+        StartCoroutine(ResetPile());
+    }
+
+    public IEnumerator MoveCardsToPile(Transform _card)
+    {
+        StartCoroutine(LerpCardPosition(CardPilePos.transform, 0.3f, _card));
+        yield return new WaitForSeconds(0.3f);
+        _card.SetParent(CardPilePos.transform);
+    }
+
+    public IEnumerator MoveToDiscard(Transform _card)
+    {
+        StartCoroutine(LerpCardPosition(CardDiscardPilePos.transform, 0.3f, _card));
+        yield return new WaitForSeconds(0.3f);
+        _card.SetParent(CardDiscardPilePos.transform);
+    }
+
+    public IEnumerator ResetPile(){
+        for (int i = 0; i < CardDiscardPilePos.transform.childCount; i++)
         {
-            MoveToPile(_card.GetComponent<CardTemplate>(), 0.3f);
+            print("ResetPile Activated");
+            StartCoroutine(LerpCardPosition(CardPilePos.transform, 0.1f, CardDiscardPilePos.transform.GetChild(i)));
+            yield return new WaitForSeconds(0.1f);
+            //CardDiscardPilePos.transform.GetChild(i).SetParent(CardPilePos.transform);
+            yield return null;
+        }
+    }
+
+    public IEnumerator MoveToDeck()
+    {
+        for (int i = 0; i < AmountCardsInPLayerHand; i++)
+        {
+            int randomVar = Random.Range(0, CardPilePos.transform.childCount);
+            StartCoroutine(LerpCardPosition(CardDeckPos.transform, 0.3f, CardPilePos.transform.GetChild(randomVar)));
+            //print("randomVar: " + randomVar);
+            yield return new WaitForSeconds(0.3f);
+            CardPilePos.transform.GetChild(randomVar).SetParent(CardDeckPos.transform);
+            yield return null;
+        }
+    }
+
+    public IEnumerator MoveCards(Transform tragetPos, GameObject currentPos)
+    {
+        for (int i = 0; i < currentPos.transform.childCount; i++)
+        {
+            StartCoroutine(LerpCardPosition(tragetPos, 0.3f, currentPos.transform.GetChild(i)));
             yield return new WaitForSeconds(0.1f);
         }
+    }
 
-        // foreach (GameObject _card in CardsInScene)
-        // {
-        //     MoveToPile(_card.GetComponent<CardTemplate>(), 0.3f);
-        //     yield return new WaitForSeconds(0.1f);
-        // }
+    public IEnumerator LerpCardPosition(Transform targetPosition, float duration, Transform currentCardPosition)
+    {
+        float time = 0;
+        Vector2 startPosition = currentCardPosition.position;
+
+        while (time < duration)
+        {
+            currentCardPosition.position = Vector2.Lerp(startPosition, targetPosition.transform.position, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        currentCardPosition.position = targetPosition.transform.position;
+        //currentCardPosition.SetParent(targetPosition.transform);
     }
 
     public IEnumerator MoveCardsToDeck()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            int value;
-            value = Random.Range(0, CardPilePos.transform.childCount);
-            if (CardPilePos.transform.childCount > 0)
-            {
-                MoveToDeck(CardPilePos.transform.GetChild(i).GetComponent<CardTemplate>(), 0.3f);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-
-        // foreach (GameObject _card in CardsInScene)
+        print("I am getting lunch");
+        // int value;
+        // value = Random.Range(0, CardPilePos.transform.childCount);
+        // for (int i = 0; i <= 5; i++)
         // {
-        //     MoveToDeck(_card.GetComponent<CardTemplate>(), 0.3f);
-        //     yield return new WaitForSeconds(0.1f);
+        //     MoveCards(CardPilePos.transform.GetChild(i).GetComponent<CardTemplate>(), 0.3f, CardDeckPos);
+        yield return new WaitForSeconds(0.1f);
         // }
-    }
-
-    public IEnumerator MoveCardsToDiscard()
-    {
-        foreach (GameObject _card in CardsInScene)
-        {
-            MoveToDiscard(_card.GetComponent<CardTemplate>(), 0.3f);
-            yield return new WaitForSeconds(0.1f);
-        }
     }
 
     private void Awake()

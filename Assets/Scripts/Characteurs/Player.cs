@@ -50,6 +50,7 @@ public class Player : Humanoid
     public void ResetPlayerStats(){
         Health = maxHealth;
         Shield = maxShield;
+        //PlayerTurnState.PlayerTurnAmount();
         GameManager._instance.GiveHand();
         UpdatePlayerUI();
     }

@@ -6887,7 +6887,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -380}
-  m_SizeDelta: {x: 1000, y: 300}
+  m_SizeDelta: {x: 1200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1408473907
 MonoBehaviour:
@@ -9596,8 +9596,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1805358779}
-  - component: {fileID: 1805358778}
   - component: {fileID: 1805358780}
+  - component: {fileID: 1805358778}
   - component: {fileID: 1805358781}
   - component: {fileID: 1805358783}
   - component: {fileID: 1805358789}
@@ -9627,14 +9627,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1805358777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb38efe60fe4f4b45bafe432fb17a4ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 16528c007492a1048b46e40ef5b881d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardPrefab: {fileID: 4501315983149349109, guid: 661e7c7fac8a7544ebf0569d415a621c, type: 3}
+  PlayerCardProfiles:
+  - {fileID: 11400000, guid: 93d65b9136393dc428703f8f64dcce1e, type: 2}
+  - {fileID: 11400000, guid: 9077bee36503bea48ae996862ef8c8a8, type: 2}
+  - {fileID: 11400000, guid: e2a05d5c5008d0c49b14b76bed07dbe3, type: 2}
+  - {fileID: 11400000, guid: eeae971aa21b8e74daf38ef4630e57ef, type: 2}
+  - {fileID: 11400000, guid: f6d05748032011542bc0bbe79bb7e76c, type: 2}
+  - {fileID: 11400000, guid: 5a337e08789f74842952216952988a55, type: 2}
+  - {fileID: 11400000, guid: fb288fbc59e1b6345a19cc765b553b28, type: 2}
+  - {fileID: 11400000, guid: 7babc2f3583da3b4c99da88de2ba3f73, type: 2}
+  - {fileID: 11400000, guid: 01d1e16b9fbdf7b49834556f0c3204d2, type: 2}
+  - {fileID: 11400000, guid: 8237beb630963da42aff60d70c1aa266, type: 2}
+  - {fileID: 11400000, guid: 667a82366c554804994ba1c89fdbfa75, type: 2}
+  - {fileID: 11400000, guid: a2b72716d992bdc4e8ed3371c5e3e2a0, type: 2}
+  - {fileID: 11400000, guid: 4ba3e8f1e4bba7e40869587daec33a6f, type: 2}
   CardSpawnPoint: {fileID: 131226514}
-  intToSave: 2
-  stringToSave: hello world
-  _PlayerCards: []
+  CardPrefab: {fileID: 4501315983149349109, guid: 661e7c7fac8a7544ebf0569d415a621c, type: 3}
 --- !u!4 &1805358779
 Transform:
   m_ObjectHideFlags: 0
@@ -9750,6 +9761,8 @@ MonoBehaviour:
   CardPilePos: {fileID: 1941215107}
   CardDiscardPilePos: {fileID: 183105413}
   CardDeckPos: {fileID: 1408473905}
+  CardSpawnPoint: {fileID: 131226514}
+  AmountCardsInPLayerHand: 5
   cardMoveSpeed: 3
 --- !u!114 &1805358786
 MonoBehaviour:
@@ -9800,6 +9813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardDeckBlocker: {fileID: 292151500}
+  PlayerTurnAmount: 0
 --- !u!114 &1805358790
 MonoBehaviour:
   m_ObjectHideFlags: 0

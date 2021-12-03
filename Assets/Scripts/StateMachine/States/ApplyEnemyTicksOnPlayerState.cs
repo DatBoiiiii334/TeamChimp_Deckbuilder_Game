@@ -7,7 +7,6 @@ public class ApplyEnemyTicksOnPlayerState : State
 
     public override void Enter()
     {
-        print("ApplyEnemyTicksOnPlayerState");
         if (Player._player.forPlayerTicks > 0)
         {
             StartCoroutine(DoTimedAction());
@@ -20,7 +19,6 @@ public class ApplyEnemyTicksOnPlayerState : State
 
     public override void Exit()
     {
-        Debug.Log("Exiting Apply Enemy Ticks On Player State");
         StopCoroutine(DoTimedAction());
     }
 

@@ -27,7 +27,7 @@ public class CardPicker : MonoBehaviour
     public void CloseNewCardsWindow()
     {
         CardDisplay.SetActive(false);
-        GameManager._instance.RemoveCards(CardSpawnPoint.transform);
+        //GameManager._instance.RemoveCards(CardSpawnPoint.transform);
     }
 
     public void PlaceNewCards()

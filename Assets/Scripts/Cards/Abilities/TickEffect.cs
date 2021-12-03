@@ -6,6 +6,6 @@ public class TickEffect : BaseEffect
     public override void ApplyEffect()
     {
         EnemyBody._instanceEnemyBody.forEnemyTicks += 1;
-        ApplyPlayerTicksOnEnemyState._PlayerToEnemyTickInstance.TickDamageToEnemy(template.card.AttackDamage);
+        //ApplyPlayerTicksOnEnemyState._PlayerToEnemyTickInstance.TickDamageToEnemy(template.card.AttackDamage);
     }
 }

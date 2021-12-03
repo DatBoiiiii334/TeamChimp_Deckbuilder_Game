@@ -7,7 +7,6 @@ public class CardTemplate : MonoBehaviour
 {
     public Card card;
     public delegate void AllSpellsFromCard();
-
     public AllSpellsFromCard myCardSpells;
     public TextMeshProUGUI nameText, descriptionText, ManaValue, AttackValue, HealValue;
     public Card.cardType _card;
@@ -42,20 +41,4 @@ public class CardTemplate : MonoBehaviour
             EnemyBody._instanceEnemyBody.UpdateEnemyUI();
         }
     }
-
-    public IEnumerator LerpPosition(GameObject targetPosition, float duration)
-    {
-        float time = 0;
-        Vector2 startPosition = transform.position;
-
-        while (time < duration)
-        {
-            transform.position = Vector2.Lerp(startPosition, targetPosition.transform.position, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = targetPosition.transform.position;
-        transform.SetParent(targetPosition.transform);
-    }
-    
 }

@@ -5,7 +5,6 @@ public class HealPlayerEffect : BaseEffect
 {
     public override void ApplyEffect()
     {
-        Debug.Log("HealPlayerEffect");
         Player._player.Health += template.card.Health;
         Player._player.Shield += template.card.Shield;
         Player._player.anim.SetTrigger("DoHealAnim");

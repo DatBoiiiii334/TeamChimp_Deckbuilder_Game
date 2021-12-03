@@ -23,6 +23,7 @@ public class Dropzone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public void CommidCardAction(CardTemplate _droppedCard, Draggable _carDragComponent)
     {
         _droppedCard.ExecuteAction();
-        CardSystemManager._instance.MoveToDiscard(_droppedCard, 0.2f);
+
+        CardSystemManager._instance._MoveCardsToDiscard(_droppedCard.transform);
     }
 }
